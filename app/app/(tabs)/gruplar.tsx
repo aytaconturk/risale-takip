@@ -77,7 +77,7 @@ function GrupDetayi({ kp, ust, yeniGrup }: { kp: Kp; ust: ReactNode; yeniGrup: (
       baslik={grup.ad}
       alt={t('ders.ozet', { n: uyeler.length, program: kp.program?.ad ?? '' })}
       yenile={() => qc.invalidateQueries()}>
-      {ust ? <View style={{ flexBasis: '100%' }}>{ust}</View> : null}
+      {ust ? <View style={{ width: '100%' }}>{ust}</View> : null}
       <Kolon>
         <Serit hucreler={[
           { etiket: t('ders.bugunOkuyan'), deger: `${okuyan} / ${uyeler.length}`, boyut: 30 },

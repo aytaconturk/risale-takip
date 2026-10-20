@@ -59,7 +59,7 @@ function BugunIcerik({ kp }: { kp: Kp }) {
       alt={`${gunAdi(tarih)} · ${ad}`}
       yenile={() => qc.invalidateQueries()}>
       {programlar && programlar.length > 1 ? (
-        <Satir style={{ flexWrap: 'wrap', flexBasis: '100%' }}>
+        <Satir style={{ flexWrap: 'wrap', width: '100%' }}>
           {programlar.map((p) => (
             <Cip key={p.id} baslik={p.grup?.ad ?? p.program?.ad ?? ''} secili={p.id === kp.id} onPress={() => kpSec(p.id)} />
           ))}
