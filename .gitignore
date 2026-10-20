@@ -1,0 +1,6 @@
+node_modules/
+# Lokal ortam: app/.env (LAN adresi, lokal anahtarlar), supabase/.env.local (VAPID gizli anahtarı)
+app/.env
+supabase/.env.local
+supabase/.temp/
+supabase/.branches/

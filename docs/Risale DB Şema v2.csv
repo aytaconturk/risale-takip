@@ -1,0 +1,98 @@
+tablo,sutun,tip,zorunlu,varsayilan,iliski / kısıt,aciklama,v2
+kullanici,id,uuid,evet,auth.uid(),PK = auth.users.id,Supabase Auth kullanıcısı,
+kullanici,ad,text,evet,,,,
+kullanici,soyad,text,hayır,,,,
+kullanici,telefon,text,hayır,,UNIQUE,E.164 biçimi (+90...),
+kullanici,eposta,text,hayır,,UNIQUE,,
+kullanici,hatirlatma_acik,bool,evet,true,,Günlük kendi hatırlatması,
+kullanici,hatirlatma_saati,time,hayır,21:00,,Yerel saat,
+kullanici,saat_dilimi,text,evet,Europe/Istanbul,,"Gün sınırı ve hatırlatma bu dilime göre hesaplanır",yeni
+kullanici,dil,text,evet,tr,"tr | en",,yeni
+kullanici,kayit_tarihi,timestamptz,evet,now(),,,
+kullanici,silinme_tarihi,timestamptz,hayır,,,"Hesap silme talebi (KVKK); 30 gün sonra kişisel veriler anonimleşir",yeni
+kitaplar,id,uuid,evet,,PK,,
+kitaplar,ad,text,evet,,UNIQUE,,
+kitaplar,sayfa_sayisi,int,evet,,> 0,Referans baskı sayfa sayısı,
+program,id,uuid,evet,,PK,,
+program,ad,text,evet,,,,
+program,gunluk_sayfa,int,evet,,> 0,,
+program,onerilen_baslangic,date,hayır,,,,
+program,duzen_modu,text,evet,gunluk,"gunluk | hafta_ici | ozel",,
+program,okuma_gunleri,text,hayır,1111111,7 karakter Pzt→Paz,"duzen_modu=ozel ise hangi günler okuma günü (1=okunur)",yeni
+program,olusturan_id,uuid,hayır,,FK kullanici.id,"Boş = sistem programı; dolu = kullanıcının özel programı",yeni
+program,gorunurluk,text,evet,herkes,"herkes | ozel","Özel programı yalnızca oluşturan ve onun grupları görür",yeni
+program_kitaplari,id,uuid,evet,,PK,,
+program_kitaplari,program_id,uuid,evet,,FK program.id ON DELETE CASCADE,,
+program_kitaplari,kitap_id,uuid,evet,,FK kitaplar.id,,
+program_kitaplari,sira,int,evet,,"UNIQUE(program_id, sira)",,
+program_kitaplari,baslangic_sayfasi,int,hayır,1,,"Kitabın bir bölümünü almak için (ör. yalnızca 1–200)",yeni
+program_kitaplari,bitis_sayfasi,int,hayır,,,"Boş = kitabın sonu",yeni
+grup,id,uuid,evet,,PK,,
+grup,ad,text,evet,,,,
+grup,program_id,uuid,evet,,FK program.id,,
+grup,kurucu_id,uuid,evet,,FK kullanici.id,,
+grup,baslangic_tarihi,date,evet,,,Grubun ortak 1. günü,
+grup,davet_kodu,text,evet,,UNIQUE,Elle yazılan kısa kod,
+grup,ders_gunu,text,hayır,,"pzt..paz","Yüz yüze dersin haftalık günü",yeni
+grup,ders_saati,time,hayır,,,,yeni
+grup,konum,text,hayır,,,Serbest metin adres,yeni
+grup,aktif,bool,evet,true,,"Kapatılan grup arşivlenir, kayıtlar silinmez",yeni
+grup,olusturma_tarihi,timestamptz,evet,now(),,,
+kullanici_program,id,uuid,evet,,PK,"Bir kullanıcının bir programa her katılımı ayrı satır (bırakıp yeniden başlama = yeni satır)",
+kullanici_program,kullanici_id,uuid,evet,,FK kullanici.id,,
+kullanici_program,program_id,uuid,evet,,FK program.id,,
+kullanici_program,grup_id,uuid,hayır,,FK grup.id,Boş = bireysel okuma,
+kullanici_program,rol,text,hayır,,"yonetici | uye","Yalnızca grup_id doluysa",
+kullanici_program,davet_id,uuid,hayır,,FK davetler.id,"Hangi davetle katıldığı (genel linklerde kullanım sayımı buradan)",yeni
+kullanici_program,dahil_olma_tarihi,date,evet,,,,
+kullanici_program,baslangic_tarihi,date,evet,,,"Grupta = grup.baslangic_tarihi; bireyselde kullanıcı seçer",
+kullanici_program,durum,text,evet,aktif,"aktif | duraklatildi | birakti | tamamladi | cikarildi",,genişledi
+kullanici_program,durum_tarihi,date,hayır,,,,
+kullanici_program,hatirlatma_kabul,bool,evet,true,,"false = grup üyelerinden hatırlatma almaz",yeni
+kullanici_program,—,—,—,—,"Kısmi UNIQUE(kullanici_id, program_id, grup_id) WHERE durum IN ('aktif','duraklatildi')",Aynı anda iki aktif kayıt engellenir,yeni
+duraklatmalar,id,uuid,evet,,PK,"Seyahat, hastalık vb. ara; çizelge bu günler kadar kayar",yeni
+duraklatmalar,kullanici_program_id,uuid,evet,,FK kullanici_program.id,,yeni
+duraklatmalar,baslangic,date,evet,,,,yeni
+duraklatmalar,bitis,date,hayır,,>= baslangic,Boş = hâlâ duraklatılmış,yeni
+duraklatmalar,neden,text,hayır,,,,yeni
+okuma_kayitlari,id,uuid,evet,,PK,,
+okuma_kayitlari,kullanici_program_id,uuid,evet,,FK kullanici_program.id ON DELETE CASCADE,,
+okuma_kayitlari,gun_no,int,evet,,"UNIQUE(kullanici_program_id, gun_no)",,
+okuma_kayitlari,okunma_tarihi,date,evet,,,Kullanıcının yerel tarihi,
+okuma_kayitlari,telafi_mi,bool,evet,false,,"gun_no < o günün planlanan gün_no'su ise true",
+okuma_kayitlari,okunan_sayfa,int,hayır,,"1..gunluk_sayfa","Boş = günün tamamı; dolu = kısmi okuma (gün tamamlanmış sayılmaz)",yeni
+okuma_kayitlari,kaynak,text,evet,uygulama,"uygulama | toplu | yonetici","toplu = geçmiş günleri tek seferde işaretleme",yeni
+okuma_kayitlari,olusturma,timestamptz,evet,now(),,"Geri alma = satır silinir",yeni
+notlar,id,uuid,evet,,PK,,yeni
+notlar,kullanici_id,uuid,evet,,FK kullanici.id,,yeni
+notlar,kitap_id,uuid,evet,,FK kitaplar.id,,yeni
+notlar,sayfa,int,hayır,,,,yeni
+notlar,metin,text,evet,,,,yeni
+notlar,grupla_paylas,uuid,hayır,,FK grup.id,"Dolu = o grubun üyeleri görür",yeni
+notlar,olusturma,timestamptz,evet,now(),,,yeni
+davetler,id,uuid,evet,,PK,,
+davetler,grup_id,uuid,evet,,FK grup.id,,
+davetler,gonderen_id,uuid,evet,,FK kullanici.id,,
+davetler,tip,text,evet,kisisel,"kisisel | genel","genel = WhatsApp grubuna atılan çok kullanımlı link",yeni
+davetler,telefon,text,hayır,,,Yalnızca kisisel davette,genişledi
+davetler,token,text,evet,,UNIQUE,,
+davetler,maks_kullanim,int,evet,1,,kisisel = 1,yeni
+davetler,olusturma,timestamptz,evet,now(),,,
+davetler,son_gecerlilik,timestamptz,evet,now()+7 gün,,,
+davetler,iptal_tarihi,timestamptz,hayır,,,Yönetici linki iptal edebilir,yeni
+davetler,kullanan_id,uuid,hayır,,FK kullanici.id,Yalnızca kisisel davette,
+davetler,kullanilma,timestamptz,hayır,,,,
+hatirlatmalar,id,uuid,evet,,PK,,
+hatirlatmalar,grup_id,uuid,evet,,FK grup.id,,
+hatirlatmalar,gonderen_id,uuid,evet,,FK kullanici.id,,
+hatirlatmalar,alan_id,uuid,evet,,FK kullanici.id,,
+hatirlatmalar,gun_no,int,evet,,,,
+hatirlatmalar,kanal,text,evet,,"push | whatsapp",,
+hatirlatmalar,zaman,timestamptz,evet,now(),,,
+hatirlatmalar,tarih,date,evet,,"UNIQUE(gonderen_id, alan_id, tarih)",Günde 1 sınırı,
+hatirlatmalar,durum,text,evet,gonderildi,"gonderildi | engellendi | hata","engellendi = alan kişi hatirlatma_kabul=false",yeni
+cihazlar,id,uuid,evet,,PK,Push bildirimi için,yeni
+cihazlar,kullanici_id,uuid,evet,,FK kullanici.id,,yeni
+cihazlar,expo_push_token,text,evet,,UNIQUE,,yeni
+cihazlar,platform,text,evet,,"ios | android",,yeni
+cihazlar,son_gorulme,timestamptz,evet,now(),,"Geçersiz token hatasında satır silinir",yeni
