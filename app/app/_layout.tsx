@@ -1,4 +1,3 @@
-import { Archivo_400Regular, Archivo_600SemiBold, Archivo_800ExtraBold, useFonts } from '@expo-google-fonts/archivo';
 import type { Session } from '@supabase/supabase-js';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
@@ -35,7 +34,6 @@ const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, staleTime: 3
 
 export default function KokLayout() {
   const [oturum, setOturum] = useState<Session | null | undefined>(undefined);
-  const [fontHazir] = useFonts({ Archivo_400Regular, Archivo_600SemiBold, Archivo_800ExtraBold });
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setOturum(data.session));
@@ -47,15 +45,15 @@ export default function KokLayout() {
   }, []);
 
   useEffect(() => {
-    if (oturum !== undefined && fontHazir) SplashScreen.hideAsync();
-  }, [oturum, fontHazir]);
+    if (oturum !== undefined) SplashScreen.hideAsync();
+  }, [oturum]);
 
   useEffect(() => {
     if (oturum) pushKaydet();
   }, [oturum]);
 
-  // Font hazır olana kadar SplashScreen açık kalır; sistem fontundan Archivo'ya atlama görünmez
-  if (oturum === undefined || !fontHazir) return null;
+  // Oturum bilinene kadar SplashScreen açık kalır
+  if (oturum === undefined) return null;
   return (
     // viewport-fit=cover sayesinde webde de gerçek güvenli alan değerleri ölçülür
     <SafeAreaProvider initialMetrics={Platform.OS === 'web' ? undefined : initialWindowMetrics}>

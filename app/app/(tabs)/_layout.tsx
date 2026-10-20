@@ -60,7 +60,7 @@ function AltCubuk(p: BottomTabBarProps) {
       style={{
         flexDirection: 'row', backgroundColor: r.yuzey, paddingBottom: p.insets.bottom,
         paddingLeft: p.insets.left, paddingRight: p.insets.right,
-        borderTopWidth: r.dil === 'modernist' ? 2 : 1, borderTopColor: r.kenar,
+        borderTopWidth: 1, borderTopColor: r.kenar,
       }}>
       {p.state.routes.map((route, i) => {
         const s = SEKMELER.find((x) => x.ad === route.name)!;
@@ -74,8 +74,6 @@ function AltCubuk(p: BottomTabBarProps) {
             accessibilityLabel={t(s.baslik)}
             onPress={() => sekmeyeGit(p, i)}
             style={{ flex: 1, height: 56, alignItems: 'center', justifyContent: 'center', gap: 3 }}>
-            {/* Modernist imza: aktif sekmenin üstünde 3 px vurgu şerit */}
-            {aktif && r.dil === 'modernist' ? <View style={{ position: 'absolute', top: -2, left: 8, right: 8, height: 3, backgroundColor: r.vurgu }} /> : null}
             <Ikon ad={s.ikon} renk={renk} boyut={24} />
             <Text numberOfLines={1} style={[tip(r, 'yari'), { fontSize: 11, color: renk }]}>{t(s.baslik)}</Text>
           </Pressable>
@@ -87,7 +85,6 @@ function AltCubuk(p: BottomTabBarProps) {
 
 function WebKenarMenu(p: BottomTabBarProps) {
   const r = useRenkler();
-  const modernist = r.dil === 'modernist';
   useSonSekme(p);
   return (
     <View style={{ width: 240, backgroundColor: r.yuzey, borderRightWidth: 1, borderRightColor: r.kenar, paddingVertical: 24 }}>
@@ -106,10 +103,9 @@ function WebKenarMenu(p: BottomTabBarProps) {
               accessibilityState={{ selected: aktif }}
               onPress={() => sekmeyeGit(p, i)}
               style={({ hovered }: { hovered?: boolean }) => ({
-                flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: modernist ? 24 : 12,
-                marginHorizontal: modernist ? 0 : 12, borderRadius: r.rButon,
+                flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 12,
+                marginHorizontal: 12, borderRadius: r.rButon,
                 backgroundColor: aktif ? alfa(r.vurgu, 0.1) : hovered ? alfa(r.metin, 0.06) : 'transparent',
-                borderTopWidth: modernist && i ? 2 : 0, borderTopColor: r.kenar,
               })}>
               <Ikon ad={s.ikon} renk={aktif ? r.vurgu : r.soluk} boyut={20} />
               <Text style={[tip(r, 'yari'), { fontSize: 15, color: aktif ? r.vurgu : r.metin }]}>{t(s.baslik)}</Text>

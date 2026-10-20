@@ -28,11 +28,9 @@ import { useDuzen } from '@/src/lib/duzen';
 import { alfa, useRenkler, yazi, type Renkler } from '@/src/lib/tema';
 import { useUi } from '@/src/store';
 
-// Modernist'te Archivo ailesi (fontWeight verilmez), klasik'te sistem fontu + fontWeight
+// Sistem fontu + fontWeight
 export const tip = (r: Renkler, a: 'kalin' | 'yari' | 'normal') =>
-  r.dil === 'modernist'
-    ? ({ fontFamily: r.font[a] } as const)
-    : ({ fontWeight: a === 'kalin' ? r.baslikAgirlik : a === 'yari' ? '600' : '400' } as const);
+  ({ fontWeight: a === 'kalin' ? r.baslikAgirlik : a === 'yari' ? '600' : '400' }) as const;
 
 // Sayılar (sayfa, süre, yüzde) hizalı
 export const rakam = { fontVariant: ['tabular-nums'] } as TextStyle;
@@ -85,7 +83,7 @@ export function Ekran({
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={
           genis
-            ? { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', rowGap: 24, columnGap: r.dil === 'modernist' ? 40 : 24, paddingTop: 32, paddingHorizontal: 40, paddingBottom: 48 }
+            ? { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', rowGap: 24, columnGap: 24, paddingTop: 32, paddingHorizontal: 40, paddingBottom: 48 }
             : { gap: 24, paddingTop: 20, paddingLeft: 16 + ic.left, paddingRight: 16 + ic.right, paddingBottom: 32 }
         }
         refreshControl={yenile && Platform.OS !== 'web' ? <RefreshControl refreshing={false} onRefresh={yenile} /> : undefined}>
@@ -142,25 +140,19 @@ export function BolumBasligi({ baslik, sag, sagRenk }: { baslik: string; sag?: s
   );
 }
 
-// İstatistik şeridi: modernist'te aralıksız, üst/alt 2 px çizgili, hücreler arası 1 px; klasik'te 12 aralıklı kartlar
+// İstatistik şeridi: 12 aralıklı ayrı kartlar
 export function Serit({ hucreler, sutun, degerBoyut = 26 }: { hucreler: { etiket: string; deger: string; renk?: string; boyut?: number }[]; sutun?: number; degerBoyut?: number }) {
   const r = useRenkler();
   const n = sutun ?? hucreler.length;
-  const modernist = r.dil === 'modernist';
   const satirlar = Array.from({ length: Math.ceil(hucreler.length / n) }, (_, i) => hucreler.slice(i * n, i * n + n));
   return (
-    <View style={[{ gap: r.statAralik }, modernist ? { borderTopWidth: 2, borderBottomWidth: 2, borderColor: r.metin } : null]}>
+    <View style={{ gap: r.statAralik }}>
       {satirlar.map((satir, i) => (
-        <View key={i} style={[{ flexDirection: 'row', gap: r.statAralik }, modernist && i ? { borderTopWidth: 1, borderTopColor: r.kenar } : null]}>
-          {satir.map((h, j) => (
+        <View key={i} style={{ flexDirection: 'row', gap: r.statAralik }}>
+          {satir.map((h) => (
             <View
               key={h.etiket}
-              style={[
-                { flex: 1, minWidth: 0, gap: 4, padding: modernist ? 12 : 16 },
-                modernist
-                  ? { borderLeftWidth: j ? 1 : 0, borderLeftColor: r.kenar }
-                  : { backgroundColor: r.yuzey, borderRadius: r.rKart, boxShadow: r.kartGolge },
-              ]}>
+              style={{ flex: 1, minWidth: 0, gap: 4, padding: 16, backgroundColor: r.yuzey, borderRadius: r.rKart, boxShadow: r.kartGolge }}>
               <Text style={[tip(r, 'normal'), { fontSize: 12, color: r.soluk }]}>{h.etiket}</Text>
               <Text style={[tip(r, 'kalin'), rakam, { fontSize: h.boyut ?? degerBoyut, color: h.renk ?? r.metin, flexShrink: 1 }]}>{h.deger}</Text>
             </View>
@@ -231,7 +223,7 @@ export function Buton({
 }) {
   const r = useRenkler();
   const yaziRengi = renk ?? {
-    ana: r.dil === 'modernist' ? r.zemin : '#fff',
+    ana: '#fff',
     ikincil: r.metin,
     hayalet: r.vurgu,
     beyaz: r.vurguButonYazi,
@@ -292,7 +284,7 @@ export function SegmentSecici<T extends string>({ secenekler, deger, degistir }:
               flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8,
               backgroundColor: secili ? r.vurgu : 'transparent', borderLeftWidth: i ? 1 : 0, borderLeftColor: r.kenar,
             }}>
-            <Text style={[tip(r, 'yari'), { fontSize: 14, color: secili ? (r.dil === 'modernist' ? r.zemin : '#fff') : r.metin }]}>{s.etiket}</Text>
+            <Text style={[tip(r, 'yari'), { fontSize: 14, color: secili ? '#fff' : r.metin }]}>{s.etiket}</Text>
           </Pressable>
         );
       })}
@@ -590,21 +582,15 @@ export function onayla(mesaj: string): Promise<boolean> {
 
 export function BosDurum({ baslik, alt, ikon }: { baslik: string; alt?: string; ikon?: IkonAdi }) {
   const r = useRenkler();
-  const modernist = r.dil === 'modernist';
   return (
-    <View
-      style={
-        modernist
-          ? { gap: 6, paddingTop: 16, borderTopWidth: r.cizgi, borderTopColor: r.metin }
-          : { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24, gap: 10 }
-      }>
-      {!modernist && ikon ? (
+    <View style={{ alignItems: 'center', paddingVertical: 40, paddingHorizontal: 24, gap: 10 }}>
+      {ikon ? (
         <View style={{ width: 64, height: 64, borderRadius: 21, backgroundColor: alfa(r.vurgu, 0.12), alignItems: 'center', justifyContent: 'center' }}>
           <Ikon ad={ikon} renk={r.vurgu} boyut={32} />
         </View>
       ) : null}
-      <Text style={[tip(r, 'kalin'), { fontSize: 18, color: r.metin, textAlign: modernist ? 'left' : 'center' }]}>{baslik}</Text>
-      {alt ? <Text style={[tip(r, 'normal'), { fontSize: 14, color: r.soluk, textAlign: modernist ? 'left' : 'center' }]}>{alt}</Text> : null}
+      <Text style={[tip(r, 'kalin'), { fontSize: 18, color: r.metin, textAlign: 'center' }]}>{baslik}</Text>
+      {alt ? <Text style={[tip(r, 'normal'), { fontSize: 14, color: r.soluk, textAlign: 'center' }]}>{alt}</Text> : null}
     </View>
   );
 }

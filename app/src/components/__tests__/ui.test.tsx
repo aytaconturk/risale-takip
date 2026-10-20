@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { GunDairesi } from '@/src/components/GunDairesi';
@@ -12,7 +12,7 @@ import { useUi } from '@/src/store';
 
 let mockGenis = false;
 jest.mock('@/src/lib/duzen', () => ({
-  useDuzen: () => ({ genis: mockGenis, dil: mockGenis ? 'klasik' : 'modernist', bugunVaryant: mockGenis ? 'oturum' : 'kart' }),
+  useDuzen: () => ({ genis: mockGenis, dil: 'klasik', bugunVaryant: mockGenis ? 'oturum' : 'kart' }),
 }));
 jest.mock('@/src/lib/supabase', () => require('@/src/test/sahteSupabase').modul);
 
@@ -57,12 +57,20 @@ const ornekler: [string, () => ReactElement][] = [
   )],
 ];
 
-describe.each([['modernist', false], ['klasik', true]])('%s', (_, genis) => {
+describe.each([['mobil', false], ['genis', true]])('%s', (_, genis) => {
   beforeEach(() => { mockGenis = genis; });
 
   test.each(ornekler)('%s', async (_ad, el) => {
     const { toJSON } = await ciz(el());
     expect(toJSON()).toMatchSnapshot();
+  });
+
+  // Modernist vurgu (#ec3013 / koyu #ff563c) hiçbir ortamda, açık ya da koyu temada görünmemeli
+  test.each(['acik', 'koyu'] as const)('vurgu rengi #ec3013 hiçbir bileşende kullanılmıyor (%s)', async (tema) => {
+    useUi.setState({ tema });
+    const { toJSON } = await ciz(<>{ornekler.map(([ad, el]) => <View key={ad}>{el()}</View>)}</>);
+    expect(JSON.stringify(toJSON()).toLowerCase()).not.toMatch(/ec3013|ff563c/);
+    useUi.setState({ tema: 'sistem' });
   });
 
   test('Bildirim', async () => {

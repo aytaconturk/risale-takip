@@ -1,7 +1,7 @@
 # PWA ikonları ve iOS açılış görselleri. Kullanım: python3 scripts/ikon-uret.py (app/ içinde)
 from PIL import Image, ImageDraw
 
-VURGU, ZEMIN, METIN = '#ec3013', '#f3f2f2', '#201e1d'
+VURGU, ZEMIN, METIN = '#007AFF', '#F2F2F7', '#000000'
 
 
 def isaret(d, cx, cy, s, renk):

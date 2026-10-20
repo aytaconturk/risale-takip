@@ -12,7 +12,7 @@ export function useDuzen() {
   const genis = width >= GENIS;
   return {
     genis,
-    dil: genis ? 'klasik' : 'modernist',
+    dil: 'klasik',
     bugunVaryant: BUGUN_VARYANT ?? (genis ? 'oturum' : 'kart'),
   } as const;
 }

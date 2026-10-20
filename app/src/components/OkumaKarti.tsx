@@ -194,7 +194,7 @@ function CetvelKarti(o: Okuma) {
               onPress={() => kaydet.mutate(cetvelDokunus(mevcut, i))}
               style={{
                 flex: 1, aspectRatio: 3 / 4, justifyContent: 'flex-end', padding: 3,
-                borderRadius: r.dil === 'klasik' ? 6 : r.rKucuk, borderWidth: 2,
+                borderRadius: 6, borderWidth: 2,
                 borderColor: dolu ? r.okundu : r.iz, backgroundColor: dolu ? r.okundu : 'transparent',
               }}>
               <Text style={[tip(r, 'yari'), rakam, { fontSize: 10, color: dolu ? r.okunduYazi : r.soluk }]}>{sayfaNo(o.aralik, i)}</Text>

@@ -98,7 +98,7 @@ function BugunIcerik({ kp }: { kp: Kp }) {
       <Kolon>
         <View style={{ flexDirection: 'row', gap: r.statAralik }}>
           <Istatistik ust={<Satir style={{ gap: 6 }}><Ikon ad="alev" renk={r.vurgu} boyut={16} /><Etiket renk={r.soluk}>{t('bugun.seri')}</Etiket></Satir>}
-            deger={t('genel.gun', { n: i.seri })} alt={<Yazi tur="soluk">{t('bugun.arkaArkaya')}</Yazi>} sol />
+            deger={t('genel.gun', { n: i.seri })} alt={<Yazi tur="soluk">{t('bugun.arkaArkaya')}</Yazi>} />
           <Istatistik ust={<Etiket renk={r.soluk}>{t('bugun.kulliyat')}</Etiket>} deger={yuzde(i.yuzde)}
             alt={<View style={{ gap: 6 }}><Cubuk oran={i.okunan_sayfa / Math.max(1, i.toplam_sayfa)} /><Yazi tur="soluk">{`${sayi(i.okunan_sayfa)} / ${sayi(i.toplam_sayfa)}`}</Yazi></View>} />
         </View>
@@ -123,18 +123,11 @@ function BugunIcerik({ kp }: { kp: Kp }) {
   );
 }
 
-// Modernist'te aralıksız, üst/alt çizgili ikili; klasik'te ayrı kartlar
-function Istatistik({ ust, deger, alt, sol }: { ust: ReactNode; deger: string; alt: ReactNode; sol?: boolean }) {
+// Ayrı kartlar
+function Istatistik({ ust, deger, alt }: { ust: ReactNode; deger: string; alt: ReactNode }) {
   const r = useRenkler();
-  const modernist = r.dil === 'modernist';
   return (
-    <View
-      style={[
-        { flex: 1, gap: 6, padding: 16 },
-        modernist
-          ? { borderTopWidth: 2, borderBottomWidth: 2, borderColor: r.metin, borderRightWidth: sol ? 1 : 0, borderRightColor: r.kenar }
-          : { backgroundColor: r.yuzey, borderRadius: r.rKart, boxShadow: r.kartGolge },
-      ]}>
+    <View style={{ flex: 1, gap: 6, padding: 16, backgroundColor: r.yuzey, borderRadius: r.rKart, boxShadow: r.kartGolge }}>
       {ust}
       <Text style={[tip(r, 'kalin'), rakam, { fontSize: 32, letterSpacing: -0.6, color: r.metin }]}>{deger}</Text>
       {alt}

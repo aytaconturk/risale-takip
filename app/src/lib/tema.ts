@@ -1,10 +1,8 @@
 import { Platform } from 'react-native';
 
 import { useColorScheme } from '@/components/useColorScheme';
-import { useDuzen } from '@/src/lib/duzen';
 
-// İki görsel dil: modernist (mobil, köşesiz, tek kırmızı vurgu) ve klasik (geniş ekran, iOS renkleri).
-export type Dil = 'modernist' | 'klasik';
+// Her ortamda klasik dil (iOS renkleri). Modernist nesneler (köşesiz, kırmızı vurgu) arşiv için duruyor; hiçbir yerden çağrılmaz.
 
 type Sekil = {
   font: { normal: string; yari: string; kalin: string };
@@ -27,9 +25,9 @@ type Renk = {
   perde: string; bildirimZemin: string; bildirimYazi: string; anahtarAcik: string;
 };
 
-export type Renkler = Renk & Sekil & { dil: Dil; koyu: boolean };
+export type Renkler = Renk & Sekil & { koyu: boolean };
 
-const modernistSekil: Sekil = {
+export const modernistSekil: Sekil = {
   font: { normal: 'Archivo_400Regular', yari: 'Archivo_600SemiBold', kalin: 'Archivo_800ExtraBold' },
   baslikAgirlik: '800',
   rKart: 0, rButon: 0, rHucre: 0, rHucreKare: 0, rKucuk: 0, rHap: 0, rSayfa: 0,
@@ -43,14 +41,14 @@ const klasikSekil: Sekil = {
   cizgi: 0, butonHiza: 'center', kartGolge: '0 1px 3px rgba(0,0,0,0.06)', vurguGolge: '0 10px 24px rgba(37,99,235,0.28)', ikonKenar: 0, statAralik: 12,
 };
 
-const modAcik: Renk = {
+export const modAcik: Renk = {
   zemin: '#f3f2f2', yuzey: '#eae9e9', metin: '#201e1d', soluk: 'rgba(32,30,29,0.58)', kenar: 'rgba(32,30,29,0.40)', iz: '#d7d3d3',
   vurgu: '#ec3013', vurgu600: '#dd2b0f', vurgu700: '#ae1800', vurguZemin: '#ec3013', vurguButonYazi: '#201e1d',
   okundu: '#201e1d', okunduYazi: '#f3f2f2', telafi: '#7d7979', kismi: '#201e1d', kacirildi: '#ae1800',
   perde: 'rgba(45,43,43,0.5)', bildirimZemin: '#201e1d', bildirimYazi: '#f3f2f2', anahtarAcik: '#ec3013',
 };
 
-const modKoyu: Renk = {
+export const modKoyu: Renk = {
   zemin: '#201e1d', yuzey: '#2d2b2b', metin: '#f3f2f2', soluk: 'rgba(243,242,242,0.58)', kenar: 'rgba(243,242,242,0.38)', iz: '#444141',
   vurgu: '#ff563c', vurgu600: '#ff9783', vurgu700: '#ffc4b8', vurguZemin: '#dd2b0f', vurguButonYazi: '#201e1d',
   okundu: '#f3f2f2', okunduYazi: '#201e1d', telafi: '#9b9797', kismi: '#f3f2f2', kacirildi: '#ff9783',
@@ -73,16 +71,12 @@ const klaKoyu: Renk = {
   perde: 'rgba(0,0,0,0.6)', bildirimZemin: '#2C2C2E', bildirimYazi: '#FFFFFF', anahtarAcik: '#30D158',
 };
 
-export function renklerSec(dil: Dil, koyu: boolean): Renkler {
-  const sekil = dil === 'modernist' ? modernistSekil : klasikSekil;
-  const renk = dil === 'modernist' ? (koyu ? modKoyu : modAcik) : koyu ? klaKoyu : klaAcik;
-  return { ...renk, ...sekil, dil, koyu, ...(koyu && dil === 'klasik' ? { kartGolge: 'none', vurguGolge: 'none' } : {}) };
+export function renklerSec(koyu: boolean): Renkler {
+  return koyu ? { ...klaKoyu, ...klasikSekil, koyu, kartGolge: 'none', vurguGolge: 'none' } : { ...klaAcik, ...klasikSekil, koyu };
 }
 
 export function useRenkler(): Renkler {
-  const koyu = useColorScheme() === 'dark';
-  const { dil } = useDuzen();
-  return renklerSec(dil, koyu);
+  return renklerSec(useColorScheme() === 'dark');
 }
 
 // Düz renk ya da degrade (web: CSS, yerel: RN'in backgroundImage desteği)
