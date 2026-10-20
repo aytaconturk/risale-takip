@@ -2,7 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local app.bugun = '2026-10-25';
-select plan(6);
+select plan(7);
 
 create function pg_temp.u(onek int, no int) returns uuid language sql immutable as $$
   select format('00000000-0000-0000-%s-%s', lpad(to_hex(onek), 4, '0'), lpad(to_hex(no), 12, '0'))::uuid
@@ -27,6 +27,9 @@ select is(kullanici_bugun(), '2026-10-25'::date, 'kullanici_bugun');
 create temp table yeni as select programa_basla(pg_temp.u(3, 2)) as id;
 select is((select baslangic_tarihi from kullanici_program where id = (select id from yeni)), '2026-10-25'::date,
   'programa_basla: bugünden başlar');
+-- uygulama insert().select('id') yapar; okuma kuralı yeni satırı da görmeli
+select lives_ok($$insert into program (ad, gunluk_sayfa, duzen_modu, okuma_gunleri, olusturan_id, gorunurluk)
+  values ('Yeni', 10, 'gunluk', '1111111', auth.uid(), 'ozel') returning id$$, 'kendi programını oluşturur (returning)');
 reset role;
 
 select * from finish();
