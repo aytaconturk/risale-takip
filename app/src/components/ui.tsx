@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { useEffect, useState, type ComponentRef, type ReactNode, type Ref } from 'react';
+import { useEffect, useRef, useState, type ComponentRef, type ReactNode, type Ref } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -51,11 +51,12 @@ export function Ekran({
   alt?: string;
   sag?: ReactNode;
   children: ReactNode;
-  yenile?: () => void;
+  yenile?: () => unknown;
 }) {
   const r = useRenkler();
   const { genis } = useDuzen();
   const ic = useSafeAreaInsets();
+  const cek = useCekYenile(yenile);
   const yatay = genis ? 40 : 16;
   return (
     <View style={{ flex: 1, minHeight: 0, backgroundColor: r.zemin }}>
@@ -78,7 +79,9 @@ export function Ekran({
         </View>
         {sag === undefined ? <UstDugmeler /> : sag}
       </View>
+      {cek?.gosterge}
       <ScrollView
+        {...cek?.olaylar}
         style={[{ flex: 1 }, Platform.OS === 'web' ? ({ overscrollBehaviorY: 'contain' } as object) : null]}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={
@@ -86,11 +89,53 @@ export function Ekran({
             ? { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', rowGap: 24, columnGap: 24, paddingTop: 32, paddingHorizontal: 40, paddingBottom: 48 }
             : { gap: 24, paddingTop: 20, paddingLeft: 16 + ic.left, paddingRight: 16 + ic.right, paddingBottom: 32 }
         }
-        refreshControl={yenile && Platform.OS !== 'web' ? <RefreshControl refreshing={false} onRefresh={yenile} /> : undefined}>
+        refreshControl={yenile && Platform.OS !== 'web' ? <RefreshControl refreshing={false} onRefresh={() => void yenile()} /> : undefined}>
         {children}
       </ScrollView>
     </View>
   );
+}
+
+// Web/PWA: iPhone ana ekran uygulamasında tarayıcının çekip yenilemesi yok. Sayfanın başındayken aşağı çekince yenile çağrılır.
+const ESIK = 64;
+function useCekYenile(yenile?: () => unknown) {
+  const r = useRenkler();
+  const [cekme, setCekme] = useState(0);
+  const [yukleniyor, setYukleniyor] = useState(false);
+  const bas = useRef<number | null>(null);
+  const enUstte = useRef(true);
+  if (Platform.OS !== 'web' || !yenile) return null;
+
+  const birak = async () => {
+    const yeter = cekme >= ESIK;
+    bas.current = null;
+    setCekme(0);
+    if (!yeter || yukleniyor) return;
+    setYukleniyor(true);
+    try {
+      await yenile();
+    } finally {
+      setYukleniyor(false);
+    }
+  };
+  const yukseklik = yukleniyor ? 44 : Math.min(cekme, ESIK);
+  return {
+    gosterge: yukseklik ? (
+      <View style={{ height: yukseklik, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <ActivityIndicator color={r.soluk} animating={yukleniyor || cekme >= ESIK} style={{ opacity: yukleniyor ? 1 : cekme / ESIK }} />
+      </View>
+    ) : null,
+    olaylar: {
+      scrollEventThrottle: 16,
+      onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { enUstte.current = e.nativeEvent.contentOffset.y <= 0; },
+      onTouchStart: (e: { nativeEvent: { pageY: number } }) => { bas.current = enUstte.current ? e.nativeEvent.pageY : null; },
+      onTouchMove: (e: { nativeEvent: { pageY: number } }) => {
+        if (bas.current !== null) setCekme(Math.max(0, (e.nativeEvent.pageY - bas.current) * 0.5));
+      },
+      onTouchEnd: birak,
+      onTouchCancel: () => { bas.current = null; setCekme(0); },
+    },
+  };
 }
 
 // Geniş düzende yan yana kolon; mobilde (dikey akışta flexBasis yüksekliğe dönüşür) yalnızca grup
