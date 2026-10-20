@@ -17,19 +17,23 @@ export async function girisYap(eposta: string, sifre: string) {
 }
 
 // ad, soyad, telefon metadata ile gider; kullanici satırını trigger açar
+// createURL web'de baseUrl'i (GitHub Pages alt dizini) eklemez, elle eklenir.
+const uygulamaAdresi = (yol: string) => Linking.createURL(`${Constants.expoConfig?.experiments?.baseUrl ?? ''}${yol}`);
+
+// E-posta doğrulaması açıksa oturum gelmez; true döner ve kullanıcı e-postadaki linke yönlendirilir.
 export async function kayitOl(k: Kayit) {
-  hatayiFirlat(await supabase.auth.signUp({
+  const sonuc = await supabase.auth.signUp({
     email: k.eposta.trim(),
     password: k.sifre,
-    options: { data: { ad: k.ad.trim(), soyad: k.soyad.trim(), telefon: telefonNormalize(k.telefon) } },
-  }));
+    options: { emailRedirectTo: uygulamaAdresi('/'), data: { ad: k.ad.trim(), soyad: k.soyad.trim(), telefon: telefonNormalize(k.telefon) } },
+  });
+  hatayiFirlat(sonuc);
+  return !sonuc.data.session;
 }
 
 // E-postadaki link /sifre-yenile ekranını oturum token'larıyla açar.
-// createURL web'de baseUrl'i (GitHub Pages alt dizini) eklemez, elle eklenir.
 export async function sifreSifirla(eposta: string) {
-  const taban = Constants.expoConfig?.experiments?.baseUrl ?? '';
-  hatayiFirlat(await supabase.auth.resetPasswordForEmail(eposta.trim(), { redirectTo: Linking.createURL(`${taban}/sifre-yenile`) }));
+  hatayiFirlat(await supabase.auth.resetPasswordForEmail(eposta.trim(), { redirectTo: uygulamaAdresi('/sifre-yenile') }));
 }
 
 export async function sifreDegistir(sifre: string) {

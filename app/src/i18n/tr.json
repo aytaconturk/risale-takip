@@ -27,6 +27,7 @@
   "giris.hesapOlustur": "Yeni hesap oluştur",
   "giris.kayitOl": "Hesap oluştur",
   "giris.kayitHatali": "Hesap oluşturulamadı. E-posta veya telefon numarası başka bir hesapta kayıtlı olabilir.",
+  "giris.dogrulamaGonderildi": "Hesabınız oluşturuldu. E-posta adresinize gönderilen doğrulama linkine tıkladıktan sonra giriş yapabilirsiniz.",
   "giris.hesabimVar": "Hesabım var, giriş yap",
   "giris.linkGonder": "Yenileme linki gönder",
   "giris.linkGonderildi": "Link e-posta adresinize gönderildi. Gelen kutunuzu kontrol ediniz.",

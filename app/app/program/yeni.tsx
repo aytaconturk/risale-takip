@@ -81,7 +81,7 @@ export default function YeniProgram() {
           ))}
         </Satir>
         <Yazi>{t('program.ozet', { sayfa: ozet.sayfa, gun: ozet.gun })}</Yazi>
-        {hata && secili.length ? <Yazi renk={r.tehlike}>{t(hata as Anahtar)}</Yazi> : null}
+        {hata && ad.trim() ? <Yazi renk={r.tehlike}>{t(hata as Anahtar)}</Yazi> : null}
         <Buton baslik={t('program.olustur')} pasif={!!hata} yukleniyor={olustur.isPending} onPress={() => olustur.mutate()} />
       </Kart>
     </Ekran>

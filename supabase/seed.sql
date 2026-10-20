@@ -23,21 +23,6 @@ insert into auth.users (instance_id, id, aud, role, email, raw_user_meta_data, r
 insert into auth.identities (provider_id, user_id, identity_data, provider, created_at, updated_at) values ('00000000-0000-0000-0001-000000000005', '00000000-0000-0000-0001-000000000005', jsonb_build_object('sub', '00000000-0000-0000-0001-000000000005', 'email', 'ahmet@test.com'), 'email', now(), now());
 update kullanici set ad = 'Ahmet', soyad = 'Şahin', telefon = '+4915112345678', eposta = 'ahmet@test.com', hatirlatma_acik = true, hatirlatma_saati = '20:00', saat_dilimi = 'Europe/Berlin', dil = 'tr', kayit_tarihi = '2026-10-23', silinme_tarihi = null where id = '00000000-0000-0000-0001-000000000005';
 
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000001', 'Sözler', 862);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000002', 'Lem''alar', 488);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000003', 'Barla Lahikası', 382);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000004', 'Tarihçe-i Hayat', 725);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000005', 'Mektubat', 562);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000006', 'Asâ-yı Mûsâ', 270);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000007', 'Kastamonu Lahikası', 268);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000008', 'Şuâlar', 759);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-000000000009', 'Mesnevî-i Nuriye', 258);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-00000000000a', 'Emirdağ Lahikası', 557);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-00000000000b', 'İşârâtü''l-İ''caz', 253);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-00000000000c', 'İman ve Küfür Muvazeneleri', 207);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-00000000000d', 'Sikke-i Tasdik-i Gaybî', 278);
-insert into kitaplar (id, ad, sayfa_sayisi) values ('00000000-0000-0000-0002-00000000000e', 'Muhakemat', 130);
-
 insert into program (id, ad, gunluk_sayfa, onerilen_baslangic, duzen_modu, okuma_gunleri, olusturan_id, gorunurluk) values ('00000000-0000-0000-0003-000000000001', '20 sayfalık okuma', 20, '2026-10-15', 'gunluk', '1111111', null, 'herkes');
 insert into program (id, ad, gunluk_sayfa, onerilen_baslangic, duzen_modu, okuma_gunleri, olusturan_id, gorunurluk) values ('00000000-0000-0000-0003-000000000002', '10 sayfalık okuma', 10, '2026-10-15', 'gunluk', '1111111', null, 'herkes');
 insert into program (id, ad, gunluk_sayfa, onerilen_baslangic, duzen_modu, okuma_gunleri, olusturan_id, gorunurluk) values ('00000000-0000-0000-0003-000000000003', '5 sayfalık okuma', 5, '2026-10-15', 'gunluk', '1111111', null, 'herkes');

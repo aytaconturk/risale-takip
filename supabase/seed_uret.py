@@ -96,9 +96,7 @@ def main():
         )
     o.append("")
 
-    for k in b["KITAPLAR"]:
-        o.append(f"insert into kitaplar (id, ad, sayfa_sayisi) values ({ref(k['id'])}, {q(k['ad'])}, {k['sayfa_sayisi']});")
-    o.append("")
+    # kitaplar: migrations/0008_kitaplar.sql
 
     for p in b["PROGRAM"]:
         o.append(

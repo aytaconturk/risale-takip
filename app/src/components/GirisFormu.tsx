@@ -19,12 +19,13 @@ export function GirisFormu() {
   const alan = (k: keyof typeof f) => (v: string) => setF({ ...f, [k]: v });
   const git = (m: typeof mod) => { setMod(m); setMesaj(null); };
 
+  // is() true dönerse (ör. e-posta doğrulaması bekleniyor) başarı mesajı gösterilir
   async function calistir(is: () => Promise<unknown>, hataMetni: string, basari?: string) {
     setMesaj(null);
     setBekle(true);
     try {
-      await is();
-      if (basari) setMesaj({ metin: basari, hata: false });
+      const sonuc = await is();
+      if (basari && sonuc !== false) setMesaj({ metin: basari, hata: false });
     } catch {
       setMesaj({ metin: hataMetni, hata: true });
     } finally {
@@ -64,7 +65,7 @@ export function GirisFormu() {
         <>
           <Buton baslik={t('giris.kayitOl')} yukleniyor={bekle}
             pasif={!f.ad.trim() || !telefonGecerli(f.telefon) || !epostaTamam || !sifreTamam}
-            onPress={() => calistir(() => kayitOl(f), t('giris.kayitHatali'))} />
+            onPress={() => calistir(() => kayitOl(f), t('giris.kayitHatali'), t('giris.dogrulamaGonderildi'))} />
           <Buton baslik={t('giris.hesabimVar')} tur="ikincil" onPress={() => git('giris')} />
         </>
       ) : (
