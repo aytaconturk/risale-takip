@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { sifreDegistir } from '@/src/api/giris';
-import { Buton, Girdi, Kart, Yazi, Yukleniyor } from '@/src/components/ui';
+import { Buton, Girdi, Yazi, Yukleniyor } from '@/src/components/ui';
 import { t } from '@/src/i18n';
 import { supabase } from '@/src/lib/supabase';
 import { useRenkler } from '@/src/lib/tema';
@@ -43,17 +43,18 @@ export default function SifreYenile() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', padding: 16, backgroundColor: r.zemin }}>
       {hazir === null ? <Yukleniyor /> : !hazir ? (
-        <Kart>
+        <View style={{ gap: 16, width: '100%', maxWidth: 440, alignSelf: 'center' }}>
           <Yazi>{t('giris.linkGecersiz')}</Yazi>
           <Buton baslik={t('giris.girisDon')} onPress={() => router.replace('/')} />
-        </Kart>
+        </View>
       ) : (
-        <Kart>
+        <View style={{ gap: 16, width: '100%', maxWidth: 440, alignSelf: 'center' }}>
           <Yazi tur="baslik">{t('giris.yeniSifre')}</Yazi>
-          <Girdi etiket={t('giris.sifre')} value={sifre} onChangeText={setSifre} secureTextEntry autoComplete="new-password" placeholder={t('giris.sifreIpucu')} />
-          <Buton baslik={t('genel.kaydet')} pasif={sifre.length < 6} yukleniyor={bekle} onPress={kaydet} />
-          {hata ? <Yazi renk={r.tehlike}>{t('genel.hata')}</Yazi> : null}
-        </Kart>
+          <Girdi etiket={t('giris.sifre')} value={sifre} onChangeText={setSifre} secureTextEntry autoCapitalize="none" autoComplete="new-password"
+            placeholder={t('giris.sifreIpucu')} returnKeyType="done" enterKeyHint="done" onSubmitEditing={() => sifre.length >= 6 && kaydet()} />
+          <Buton buyuk baslik={t('genel.kaydet')} pasif={sifre.length < 6} yukleniyor={bekle} onPress={kaydet} />
+          {hata ? <Yazi renk={r.kacirildi}>{t('genel.hata')}</Yazi> : null}
+        </View>
       )}
     </View>
   );

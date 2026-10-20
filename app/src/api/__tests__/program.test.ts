@@ -1,4 +1,4 @@
-import { programHatasi, programOlustur, programOzeti, type SeciliKitap } from '@/src/api/program';
+import { programHatasi, programOlustur, programOnizleme, type SeciliKitap } from '@/src/api/program';
 import { arg, cagrilar, sifirla, sonuclar } from '@/src/test/sahteSupabase';
 
 jest.mock('@/src/lib/supabase', () => require('@/src/test/sahteSupabase').modul);
@@ -11,8 +11,12 @@ const p4: SeciliKitap[] = [
   { kitap_id: 'b10', ad: 'Emirdağ Lahikası', sayfa_sayisi: 557, bas: 1, son: 200 },
 ];
 
-test('önizleme program_toplam(p4) ile aynı: 850 sayfa, 57 gün', () => {
-  expect(programOzeti(p4, 15)).toEqual({ sayfa: 850, gun: 57 });
+test('önizleme SQL\'de hesaplanır: kitap aralıkları, günlük sayfa ve okuma günleri gönderilir', async () => {
+  sonuclar.program_onizleme = { toplam_sayfa: 850, toplam_gun: 57, bitis: '2027-01-12' };
+  expect(await programOnizleme(p4, 15, '1111100')).toEqual({ toplam_sayfa: 850, toplam_gun: 57, bitis: '2027-01-12' });
+  expect(cagrilar).toContainEqual(['rpc', ['program_onizleme', {
+    p_kitaplar: [{ bas: 1, son: 382 }, { bas: 1, son: 268 }, { bas: 1, son: 200 }], p_gunluk: 15, p_gunler: '1111100',
+  }]]);
 });
 
 test('doğrulama', () => {

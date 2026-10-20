@@ -18,9 +18,9 @@ test('ay ızgarası: Ekim 2026 Perşembe başlar, yıl geçişi', () => {
   expect(ayAraligi('2026-03-01', -1).son).toBe('2026-02-28');
 });
 
-test('ay özeti telafiyi sayar, kısmi ve kaçırılanı saymaz', () => {
-  const g = (['okundu', 'telafi', 'kismi', 'kacirildi', 'duraklatma'] as const).map((durum) => ({ durum }));
-  expect(ayOzeti(g, 20)).toEqual({ okunanGun: 2, sayfa: 40 });
+test('ay özeti: telafi okunan sayılır, kısmi ve kaçırılan ayrı', () => {
+  const g = (['okundu', 'telafi', 'kismi', 'kacirildi', 'kacirildi', 'duraklatma', 'gelecek'] as const).map((durum) => ({ durum }));
+  expect(ayOzeti(g)).toEqual({ okunan: 2, kismi: 1, kacirilan: 2 });
 });
 
 test('tarih ve aralık biçimleri', () => {
@@ -29,5 +29,5 @@ test('tarih ve aralık biçimleri', () => {
   expect(aralikMetni([
     { kitap_ad: 'Sözler', bas_sayfa: 861, son_sayfa: 862 },
     { kitap_ad: 'Tarihçe-i Hayat', bas_sayfa: 1, son_sayfa: 18 },
-  ])).toBe('Sözler 861–862 · Tarihçe-i Hayat 1–18');
+  ])).toBe('Sözler 861–862 + Tarihçe-i Hayat 1–18');
 });

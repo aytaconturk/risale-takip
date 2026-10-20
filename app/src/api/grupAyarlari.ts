@@ -12,7 +12,13 @@ export async function davetler(grupId: string) {
   );
 }
 
-export type DavetSonucu = { durum: number; link?: string; whatsapp?: string; hata?: string };
+export type DavetSonucu = {
+  durum: number;
+  link?: string;
+  whatsapp?: string;
+  hata?: string;
+  davet?: { id: string; tip: 'kisisel' | 'genel'; son_gecerlilik: string; maks_kullanim: number };
+};
 
 export async function davetOlustur(grupId: string, tip: 'kisisel' | 'genel', telefon?: string) {
   // wa.me ülke kodlu numara ister; "0555..." → "+90555..."

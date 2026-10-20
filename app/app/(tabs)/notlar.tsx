@@ -1,13 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
-import { SymbolView } from 'expo-symbols';
-import { Pressable, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 
-import { kitaplar } from '@/src/api/program';
+import { bugunVerisi } from '@/src/api/bugun';
 import { notEkle, notlar, notSil } from '@/src/api/notlar';
-import { Anahtar, BosDurum, Buton, Cip, Ekran, Girdi, Kart, onayla, Satir, Yazi, Yukleniyor } from '@/src/components/ui';
+import { kitaplar } from '@/src/api/program';
+import {
+  BolumBasligi, BosDurum, Buton, Ekran, Girdi, Kart, Kolon, onayla, OnayKutusu, SegmentSecici, Secici, tip, Yukleniyor,
+} from '@/src/components/ui';
 import { t } from '@/src/i18n';
-import { kisaTarih } from '@/src/lib/bicim';
 import { benimId } from '@/src/lib/supabase';
 import { useRenkler } from '@/src/lib/tema';
 import { useAktifProgram } from '@/src/lib/useAktifProgram';
@@ -20,7 +21,6 @@ export default function Notlar() {
   const q = useQuery({ queryKey: ['notlar'], queryFn: notlar });
   const benim = useQuery({ queryKey: ['benimId'], queryFn: benimId });
   const [filtre, setFiltre] = useState<'tumu' | 'paylasilan'>('tumu');
-  const [formAcik, setFormAcik] = useState(false);
   const sil = useMutation({
     mutationFn: notSil,
     onSuccess: () => qc.invalidateQueries({ queryKey: ['notlar'] }),
@@ -28,72 +28,97 @@ export default function Notlar() {
   });
 
   if (!q.data) return <Yukleniyor />;
-  const liste = filtre === 'tumu' ? q.data : q.data.filter((n) => n.grupla_paylas);
+  const paylasilan = q.data.filter((n) => n.grupla_paylas);
+  const liste = filtre === 'tumu' ? q.data : paylasilan;
 
   return (
-    <Ekran baslik={t('notlar.baslik')} sag={<Buton ikon={{ ios: 'plus', android: 'add', web: 'add' }} baslik={t('notlar.ekle')} onPress={() => setFormAcik(!formAcik)} />}>
-      <Satir>
-        <Cip baslik={t('notlar.tumu')} secili={filtre === 'tumu'} onPress={() => setFiltre('tumu')} />
-        <Cip baslik={t('notlar.paylasilan')} secili={filtre === 'paylasilan'} onPress={() => setFiltre('paylasilan')} />
-      </Satir>
-      {formAcik ? <NotFormu kapat={() => setFormAcik(false)} /> : null}
-      {liste.length === 0 ? <BosDurum ikon={{ ios: 'bookmark', android: 'bookmark', web: 'bookmark' }} baslik={t('notlar.bos')} alt={t('notlar.bosAlt')} /> : null}
-      {liste.map((n) => (
-        <Kart key={n.id} style={{ borderLeftWidth: 4, borderLeftColor: n.grupla_paylas ? r.basari : r.marka, gap: 10 }}>
-          <View style={{ flexDirection: 'row', gap: 10 }}>
-            <SymbolView name={{ ios: 'quote.opening', android: 'format_quote', web: 'format_quote' }} tintColor={r.marka} size={26} />
-            <Text style={{ flex: 1, fontSize: 15, lineHeight: 22, color: r.metin, fontWeight: '500' }}>{n.metin}</Text>
-          </View>
-          <Satir style={{ justifyContent: 'space-between' }}>
-            <Yazi tur="soluk" renk={r.marka}>
-              {[n.kitaplar?.ad, n.sayfa ? `s. ${n.sayfa}` : null, n.grup?.ad].filter(Boolean).join(' · ')}
-            </Yazi>
-            <Satir>
-              <Yazi tur="soluk">{kisaTarih(n.olusturma)}</Yazi>
+    <Ekran
+      ust={t('notlar.baslik')}
+      baslik={t('notlar.baslikUzun')}
+      alt={t('notlar.ozet', { n: q.data.length, m: paylasilan.length })}
+      yenile={() => q.refetch()}>
+      <Kolon>
+        <SegmentSecici
+          secenekler={[{ deger: 'tumu', etiket: t('notlar.tumu') }, { deger: 'paylasilan', etiket: t('notlar.paylasilan') }]}
+          deger={filtre}
+          degistir={setFiltre}
+        />
+        {liste.length === 0 ? <BosDurum ikon="yerimi" baslik={t('notlar.bos')} alt={t('notlar.bosAlt')} /> : null}
+        {liste.map((n) => (
+          <Kart key={n.id} cizgili>
+            <Text style={[tip(r, 'yari'), { fontSize: 11, letterSpacing: 1.1, color: r.vurgu }]}>
+              {[n.kitaplar?.ad, n.sayfa ? `s. ${n.sayfa}` : null].filter(Boolean).join(' · ').toLocaleUpperCase('tr-TR')}
+            </Text>
+            <Text selectable style={[tip(r, 'normal'), { fontSize: 16, lineHeight: 24, color: r.metin }]}>{n.metin}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+              <Text style={[tip(r, 'normal'), { flex: 1, fontSize: 12, color: r.soluk }]}>
+                {n.grup?.ad ? t('notlar.paylasildi', { grup: n.grup.ad }) : t('notlar.yalnizSiz')}
+              </Text>
               {n.kullanici_id === benim.data ? (
-                <Pressable accessibilityRole="button" onPress={async () => (await onayla(t('notlar.sil'))) && sil.mutate(n.id)}>
-                  <Yazi tur="soluk" renk={r.tehlike}>{t('notlar.sil')}</Yazi>
-                </Pressable>
+                <Buton tur="hayalet" baslik={t('notlar.sil')} renk={r.kacirildi}
+                  onPress={async () => (await onayla(t('notlar.silOnay'))) && sil.mutate(n.id)} />
               ) : null}
-            </Satir>
-          </Satir>
-        </Kart>
-      ))}
+            </View>
+          </Kart>
+        ))}
+      </Kolon>
+      <Kolon>
+        <NotFormu />
+      </Kolon>
     </Ekran>
   );
 }
 
-function NotFormu({ kapat }: { kapat: () => void }) {
+// Satır içi yeni not formu; kitap ve sayfa bugünkü okumadan önerilir
+function NotFormu() {
   const qc = useQueryClient();
   const bildir = useUi((s) => s.bildir);
   const k = useQuery({ queryKey: ['kitaplar'], queryFn: kitaplar });
   const { kp } = useAktifProgram();
+  const b = useQuery({ queryKey: ['bugun', kp?.id], queryFn: () => bugunVerisi(kp!), enabled: !!kp });
+  const bugunku = b.data?.aralik[0];
   const [kitapId, setKitapId] = useState<string | null>(null);
   const [sayfa, setSayfa] = useState('');
   const [metin, setMetin] = useState('');
   const [paylas, setPaylas] = useState(false);
+
+  // Bugünkü okuma yüklenince onun kitabı önerilir
+  const hazir = !!k.data && (!kp || b.isFetched);
+  useEffect(() => {
+    if (!kitapId && hazir) setKitapId(bugunku?.kitap_id ?? k.data?.[0]?.id ?? null);
+  }, [kitapId, hazir, bugunku?.kitap_id, k.data]);
+
   const ekle = useMutation({
     mutationFn: () =>
       notEkle({ kitap_id: kitapId!, sayfa: Number(sayfa) || null, metin, grupla_paylas: paylas && kp?.grup_id ? kp.grup_id : null }),
-    onSuccess: () => { qc.invalidateQueries({ queryKey: ['notlar'] }); kapat(); },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['notlar'] });
+      setMetin('');
+      setSayfa('');
+      bildir(t('notlar.eklendi'));
+    },
     onError: () => bildir(t('genel.hata')),
   });
+
   return (
-    <Kart>
-      <Yazi tur="baslik">{t('notlar.yeni')}</Yazi>
-      <Yazi tur="soluk">{t('notlar.kitap')}</Yazi>
-      <Satir style={{ flexWrap: 'wrap' }}>
-        {k.data?.map((b) => <Cip key={b.id} baslik={b.ad} secili={b.id === kitapId} onPress={() => setKitapId(b.id)} />)}
-      </Satir>
-      <Girdi etiket={t('notlar.sayfa')} value={sayfa} onChangeText={setSayfa} keyboardType="number-pad" />
-      <Girdi etiket={t('notlar.metin')} placeholder={t('notlar.metinIpucu')} value={metin} onChangeText={setMetin} multiline style={{ minHeight: 96, textAlignVertical: 'top', paddingTop: 10 }} />
-      {kp?.grup_id ? (
-        <Satir style={{ justifyContent: 'space-between' }}>
-          <Yazi>{t('notlar.grupla', { grup: kp.grup?.ad ?? '' })}</Yazi>
-          <Anahtar deger={paylas} degistir={setPaylas} etiket={t('notlar.grupla', { grup: kp.grup?.ad ?? '' })} />
-        </Satir>
-      ) : null}
-      <Buton baslik={t('genel.kaydet')} pasif={!kitapId || !metin.trim()} yukleniyor={ekle.isPending} onPress={() => ekle.mutate()} />
-    </Kart>
+    <View style={{ gap: 16 }}>
+      <BolumBasligi baslik={t('notlar.yeni')} />
+      <View style={{ flexDirection: 'row', gap: 12 }}>
+        <View style={{ flex: 1, minWidth: 0 }}>
+          <Secici etiket={t('notlar.kitap')} deger={kitapId} degistir={setKitapId}
+            secenekler={(k.data ?? []).map((x) => ({ deger: x.id, etiket: x.ad }))} />
+        </View>
+        <View style={{ width: 96 }}>
+          <Girdi etiket={t('notlar.sayfa')} value={sayfa} onChangeText={(v) => setSayfa(v.replace(/\D/g, ''))}
+            keyboardType="number-pad" inputMode="numeric" returnKeyType="next" enterKeyHint="next"
+            placeholder={bugunku && bugunku.kitap_id === kitapId ? String(bugunku.bas_sayfa) : undefined} />
+        </View>
+      </View>
+      <Girdi etiket={t('notlar.metin')} placeholder={t('notlar.metinIpucu')} value={metin} onChangeText={setMetin}
+        multiline style={{ minHeight: 90, textAlignVertical: 'top', paddingTop: 12 }} />
+      {kp?.grup_id ? <OnayKutusu etiket={t('notlar.grupla', { grup: kp.grup?.ad ?? '' })} deger={paylas} degistir={setPaylas} /> : null}
+      <Buton buyuk baslik={t('notlar.ekle')} pasif={!kitapId} yukleniyor={ekle.isPending}
+        onPress={() => (metin.trim() ? ekle.mutate() : bildir(t('notlar.metinBos')))} />
+    </View>
   );
 }

@@ -54,16 +54,18 @@ export async function bugunVerisi(kp: { id: string; program_id: string }) {
     supabase.rpc('geride_gunler', { kp_id: kp.id }).then(veri),
     bugun(),
   ]);
-  const aralik = i.bugunku_gun > 0 ? await gunAraligi(kp.program_id, i.bugunku_gun) : [];
-  const bugunKaydi = veri(
-    await supabase
+  const [aralik, kismiKayitlar] = await Promise.all([
+    i.bugunku_gun > 0 ? gunAraligi(kp.program_id, i.bugunku_gun) : [],
+    supabase
       .from('okuma_kayitlari')
-      .select('okunan_sayfa')
+      .select('gun_no, okunan_sayfa')
       .eq('kullanici_program_id', kp.id)
-      .eq('gun_no', i.bugunku_gun)
-      .maybeSingle(),
-  );
-  return { ilerleme: i, hafta, geride, tarih, aralik, kismiSayfa: bugunKaydi?.okunan_sayfa ?? null };
+      .not('okunan_sayfa', 'is', null)
+      .then(veri),
+  ]);
+  // gun_no → okunan sayfa (yalnızca kısmi günler)
+  const kismiler: Record<number, number> = Object.fromEntries((kismiKayitlar ?? []).map((k) => [k.gun_no, k.okunan_sayfa!]));
+  return { ilerleme: i, hafta, geride, tarih, aralik, kismiler, kismiSayfa: kismiler[i.bugunku_gun] ?? null };
 }
 
 // okunanSayfa boşsa gün tamamlanmış sayılır; kısmi kayıt varsa üzerine yazılır.
@@ -75,6 +77,23 @@ export async function gunuIsaretle(kpId: string, gunNo: number, okunanSayfa: num
         onConflict: 'kullanici_program_id,gun_no',
       }),
   );
+}
+
+// Okunan sayfa sayısına göre: günlük sayfaya ulaştıysa tam, 0 ise kayıt silinir, arası kısmi.
+export async function sayfaKaydet(kpId: string, gunNo: number, n: number, gunluk: number) {
+  if (n >= gunluk) return gunuIsaretle(kpId, gunNo);
+  if (n <= 0) return isaretiKaldir(kpId, gunNo);
+  return gunuIsaretle(kpId, gunNo, n);
+}
+
+// Sayfa cetveli: i. kutuya (0'dan) dokununca o sayfaya kadar okunmuş sayılır; son dolu kutuya dokunmak bir geri alır.
+export function cetvelDokunus(mevcut: number, i: number): number {
+  return mevcut === i + 1 ? i : i + 1;
+}
+
+// Okuma oturumu (Odak modu) sonunda kaydedilecek sayfa: önceki kısmi kayıt + oturumda çevrilen, en fazla günlük sayfa
+export function oturumSayfasi(baslangicOkunan: number, okunan: number, gunluk: number): number {
+  return Math.min(gunluk, baslangicOkunan + okunan);
 }
 
 export async function isaretiKaldir(kpId: string, gunNo: number) {

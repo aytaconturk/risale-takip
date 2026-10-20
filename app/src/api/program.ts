@@ -6,10 +6,18 @@ export async function kitaplar() {
   return veri(await supabase.from('kitaplar').select('id, ad, sayfa_sayisi').order('ad'));
 }
 
-// Kaydetmeden önce önizleme; kayıttan sonra değerler program_toplam()'dan okunur.
-export function programOzeti(secili: SeciliKitap[], gunlukSayfa: number) {
-  const sayfa = secili.reduce((t, k) => t + Math.max(0, k.son - k.bas + 1), 0);
-  return { sayfa, gun: gunlukSayfa > 0 ? Math.ceil(sayfa / gunlukSayfa) : 0 };
+// Kaydetmeden önce önizleme: toplam sayfa, okuma günü ve bitiş tarihi SQL'de hesaplanır (bugünden başlanırsa)
+export async function programOnizleme(secili: SeciliKitap[], gunlukSayfa: number, okumaGunleri: string) {
+  const satir = veri(
+    await supabase
+      .rpc('program_onizleme', {
+        p_kitaplar: secili.map((k) => ({ bas: k.bas, son: k.son })),
+        p_gunluk: gunlukSayfa,
+        p_gunler: okumaGunleri,
+      })
+      .maybeSingle(),
+  );
+  return satir as { toplam_sayfa: number | null; toplam_gun: number | null; bitis: string | null } | null;
 }
 
 export function programHatasi(ad: string, secili: SeciliKitap[], gunlukSayfa: number, okumaGunleri: string): string | null {

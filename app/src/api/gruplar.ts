@@ -30,3 +30,8 @@ export function hatirlatDurumu(u: { geride_gun: number; hatirlatma_kabul: boolea
   if (u.bugun_hatirlatildi) return 'gonderildi' as const;
   return 'aktif' as const;
 }
+
+// Bir sonraki yüz yüze ders tarihi (ders günü yoksa boş)
+export async function sonrakiDers(grupId: string) {
+  return veri(await supabase.rpc('sonraki_ders', { p_grup_id: grupId })) as string | null;
+}

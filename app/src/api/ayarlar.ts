@@ -47,5 +47,4 @@ export async function cihazKaydet(token: string, platform: 'ios' | 'android' | '
   );
 }
 
-export const HATIRLATMA_SAATLERI = ['05:30', '07:00', '13:00', '21:30', '23:00'];
 export const SAAT_DILIMLERI = ['Europe/Istanbul', 'Europe/Berlin', 'Europe/London', 'Asia/Tashkent', 'America/New_York'];

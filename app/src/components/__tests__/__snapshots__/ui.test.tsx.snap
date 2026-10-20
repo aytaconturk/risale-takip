@@ -1,0 +1,3793 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`klasik AltSayfa 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <Modal
+    animationType="slide"
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        [
+          [
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            null,
+          ],
+          {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <View
+        accessibilityLabel="Kapat"
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "rgba(0,0,0,0.35)",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityViewIsModal={true}
+        style={
+          {
+            "backgroundColor": "#F2F2F7",
+            "borderBottomLeftRadius": 20,
+            "borderBottomRightRadius": 20,
+            "borderTopColor": "#000000",
+            "borderTopLeftRadius": 20,
+            "borderTopRightRadius": 20,
+            "borderTopWidth": 0,
+            "maxHeight": 1227,
+            "maxWidth": 480,
+            "overflow": "hidden",
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            {
+              "gap": 16,
+              "padding": 24,
+              "paddingBottom": 36,
+            }
+          }
+          keyboardShouldPersistTaps="handled"
+        >
+          <View>
+            <Text>
+              İçerik
+            </Text>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </Modal>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik BosDurum 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "gap": 10,
+        "paddingHorizontal": 24,
+        "paddingVertical": 40,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "rgba(0,122,255,0.12)",
+          "borderRadius": 21,
+          "height": 64,
+          "justifyContent": "center",
+          "width": 64,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        aria-hidden="true"
+        bbHeight={32}
+        bbWidth={32}
+        className="lucide lucide-bookmark"
+        fill="none"
+        focusable={false}
+        height={32}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="#007AFF"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 32,
+              "width": 32,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={32}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278221567,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGPath
+            d="M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4278221567,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "color": "#000000",
+            "fontSize": 18,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      Henüz not eklemediniz
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "400",
+          },
+          {
+            "color": "rgba(0,0,0,0.58)",
+            "fontSize": 14,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      Açıklama
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik Butonlar 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="Ana"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#007AFF",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 12,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "center",
+          "minHeight": 52,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      aria-hidden="true"
+      bbHeight={18}
+      bbWidth={18}
+      className="lucide lucide-check"
+      fill="none"
+      focusable={false}
+      height={18}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="#fff"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2.5}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 18,
+            "width": 18,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={18}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4294967295,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth={2.5}
+      >
+        <RNSVGPath
+          d="M20 6 9 17l-5-5"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294967295,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2.5}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "color": "#fff",
+            "flexShrink": 1,
+            "fontSize": 16,
+          },
+        ]
+      }
+    >
+      Ana
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="İkincil"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 12,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "center",
+          "minHeight": 48,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "600",
+          },
+          {
+            "color": "#000000",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      İkincil
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Hayalet"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 12,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "opacity": 1,
+          "paddingHorizontal": 4,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "600",
+          },
+          {
+            "color": "#007AFF",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      Hayalet
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Beyaz"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 12,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "center",
+          "minHeight": 48,
+          "opacity": 0.45,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "color": "#0040DD",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      Beyaz
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik Cip, Anahtar, Cubuk, Stepper, IkonDugme 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": true,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#000000",
+        "borderColor": "#000000",
+        "borderRadius": 999,
+        "borderWidth": 1,
+        "justifyContent": "center",
+        "minHeight": 36,
+        "paddingHorizontal": 14,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "600",
+          },
+          {
+            "color": "#F2F2F7",
+            "fontSize": 14,
+          },
+        ]
+      }
+    >
+      10
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Günlük"
+    accessibilityRole="switch"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": true,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={7}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#34C759",
+        "borderRadius": 999,
+        "height": 30,
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+            "borderRadius": 999,
+            "height": 24,
+            "left": 23,
+            "position": "absolute",
+            "width": 24,
+          },
+          null,
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "#E5E5EA",
+        "borderRadius": 999,
+        "height": 6,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#007AFF",
+          "height": 6,
+          "width": "40%",
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 16,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Sayfa −"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 26,
+          "borderWidth": 1,
+          "height": 52,
+          "justifyContent": "center",
+          "width": 52,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        aria-hidden="true"
+        bbHeight={22}
+        bbWidth={22}
+        className="lucide lucide-minus"
+        fill="none"
+        focusable={false}
+        height={22}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="#000000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 22,
+              "width": 22,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={22}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGPath
+            d="M5 12h14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <Text
+      accessibilityLabel="Sayfa 12"
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#000000",
+            "fontSize": 64,
+            "letterSpacing": -2.5,
+            "minWidth": 96,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+    <View
+      accessibilityLabel="Sayfa +"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "#E5E5EA",
+          "borderRadius": 26,
+          "borderWidth": 1,
+          "height": 52,
+          "justifyContent": "center",
+          "width": 52,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        aria-hidden="true"
+        bbHeight={22}
+        bbWidth={22}
+        className="lucide lucide-plus"
+        fill="none"
+        focusable={false}
+        height={22}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="#000000"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 22,
+              "width": 22,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={22}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGPath
+            d="M5 12h14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+          <RNSVGPath
+            d="M12 5v14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <View
+    accessibilityLabel="Ayarlar"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#E5E5EA",
+        "borderRadius": 22,
+        "borderWidth": 0,
+        "boxShadow": "0 1px 3px rgba(0,0,0,0.06)",
+        "height": 44,
+        "justifyContent": "center",
+        "width": 44,
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      aria-hidden="true"
+      bbHeight={20}
+      bbWidth={20}
+      className="lucide lucide-bell"
+      fill="none"
+      focusable={false}
+      height={20}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="#000000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 20,
+            "width": 20,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={20}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth={2}
+      >
+        <RNSVGPath
+          d="M10.268 21a2 2 0 0 0 3.464 0"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        />
+        <RNSVGPath
+          d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik Ekran 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#F2F2F7",
+        "flex": 1,
+        "minHeight": 0,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "borderBottomColor": "#E5E5EA",
+          "borderBottomWidth": 0,
+          "flexDirection": "row",
+          "gap": 12,
+          "paddingBottom": 20,
+          "paddingLeft": 40,
+          "paddingRight": 40,
+          "paddingTop": 28,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flex": 1,
+            "minWidth": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {
+                "fontWeight": "600",
+              },
+              {
+                "color": "#007AFF",
+                "fontSize": 12,
+                "letterSpacing": 1,
+              },
+            ]
+          }
+        >
+          GÜN 30 / 300
+        </Text>
+        <Text
+          accessibilityRole="header"
+          style={
+            [
+              {
+                "fontWeight": "700",
+              },
+              {
+                "color": "#000000",
+                "flexShrink": 1,
+                "marginTop": 4,
+              },
+              {
+                "fontSize": 40,
+                "letterSpacing": -1,
+                "lineHeight": 42,
+              },
+            ]
+          }
+        >
+          20 Ekim
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "fontWeight": "400",
+              },
+              {
+                "color": "rgba(0,0,0,0.58)",
+                "fontSize": 14,
+                "marginTop": 4,
+              },
+            ]
+          }
+        >
+          Salı
+        </Text>
+      </View>
+    </View>
+    <RCTScrollView
+      contentContainerStyle={
+        {
+          "alignItems": "flex-start",
+          "columnGap": 24,
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "paddingBottom": 48,
+          "paddingHorizontal": 40,
+          "paddingTop": 32,
+          "rowGap": 24,
+        }
+      }
+      keyboardShouldPersistTaps="handled"
+      style={
+        [
+          {
+            "flex": 1,
+          },
+          null,
+        ]
+      }
+    >
+      <View>
+        <View
+          style={
+            {
+              "flexBasis": 400,
+              "flexGrow": 1,
+              "gap": 24,
+              "minWidth": 0,
+            }
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 20,
+                  "boxShadow": "0 1px 3px rgba(0,0,0,0.06)",
+                  "gap": 8,
+                  "padding": 16,
+                },
+                {
+                  "borderTopColor": "#000000",
+                  "borderTopWidth": 0,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "baseline",
+                  "borderBottomColor": "#E5E5EA",
+                  "borderBottomWidth": 0,
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                }
+              }
+            >
+              <Text
+                accessibilityRole="header"
+                style={
+                  [
+                    {
+                      "fontWeight": "700",
+                    },
+                    {
+                      "color": "#000000",
+                      "flexShrink": 1,
+                      "fontSize": 18,
+                    },
+                  ]
+                }
+              >
+                Bu hafta
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontVariant": [
+                        "tabular-nums",
+                      ],
+                    },
+                    {
+                      "color": "rgba(0,0,0,0.58)",
+                      "fontSize": 13,
+                    },
+                  ]
+                }
+              >
+                3 / 4 gün okundu
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik GunDairesi 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="12 okundu"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#007AFF",
+        "borderColor": "#007AFF",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 telafi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#00C7BE",
+        "borderColor": "#00C7BE",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#FFFFFF",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 kismi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#FF9500",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#FF9500",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#FF9500",
+          "bottom": 0,
+          "height": 5,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityLabel="12 kacirildi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#FF3B30",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#FF3B30",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "borderColor": "#007AFF",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "padding": 2,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="12 bugun"
+      style={
+        {
+          "alignItems": "center",
+          "aspectRatio": 1,
+          "backgroundColor": "transparent",
+          "borderColor": "#007AFF",
+          "borderRadius": 999,
+          "borderWidth": 2,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "width": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontWeight": "700",
+            },
+            {
+              "fontVariant": [
+                "tabular-nums",
+              ],
+            },
+            {
+              "color": "#007AFF",
+              "fontSize": 14,
+              "textDecorationLine": "none",
+            },
+          ]
+        }
+      >
+        12
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityLabel="12 gelecek"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#E5E5EA",
+        "borderRadius": 999,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "rgba(0,0,0,0.58)",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 duraklatma"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#E5E5EA",
+        "borderColor": undefined,
+        "borderRadius": 999,
+        "borderWidth": 0,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "rgba(0,0,0,0.58)",
+            "fontSize": 14,
+            "textDecorationLine": "line-through",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 bos"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": undefined,
+        "borderRadius": 999,
+        "borderWidth": 0,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#E5E5EA",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`klasik SegmentSecici 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityRole="tablist"
+    style={
+      {
+        "borderColor": "#E5E5EA",
+        "borderRadius": 12,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      accessibilityRole="tab"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": true,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#007AFF",
+          "borderLeftColor": "#E5E5EA",
+          "borderLeftWidth": 0,
+          "flex": 1,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontWeight": "600",
+            },
+            {
+              "color": "#fff",
+              "fontSize": 14,
+            },
+          ]
+        }
+      >
+        Açık
+      </Text>
+    </View>
+    <View
+      accessibilityRole="tab"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": false,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderLeftColor": "#E5E5EA",
+          "borderLeftWidth": 1,
+          "flex": 1,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontWeight": "600",
+            },
+            {
+              "color": "#000000",
+              "fontSize": 14,
+            },
+          ]
+        }
+      >
+        Koyu
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist AltSayfa 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <Modal
+    animationType="slide"
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        [
+          [
+            {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "flex-end",
+            },
+            null,
+          ],
+          {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <View
+        accessibilityLabel="Kapat"
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "rgba(45,43,43,0.5)",
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        accessibilityViewIsModal={true}
+        style={
+          {
+            "backgroundColor": "#f3f2f2",
+            "borderBottomLeftRadius": 0,
+            "borderBottomRightRadius": 0,
+            "borderTopColor": "#201e1d",
+            "borderTopLeftRadius": 0,
+            "borderTopRightRadius": 0,
+            "borderTopWidth": 2,
+            "maxHeight": 1227,
+            "maxWidth": 440,
+            "overflow": "hidden",
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView
+          contentContainerStyle={
+            {
+              "gap": 16,
+              "padding": 24,
+              "paddingBottom": 54,
+            }
+          }
+          keyboardShouldPersistTaps="handled"
+        >
+          <View>
+            <Text>
+              İçerik
+            </Text>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </Modal>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist BosDurum 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "borderTopColor": "#201e1d",
+        "borderTopWidth": 2,
+        "gap": 6,
+        "paddingTop": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "color": "#201e1d",
+            "fontSize": 18,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      Henüz not eklemediniz
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_400Regular",
+          },
+          {
+            "color": "rgba(32,30,29,0.58)",
+            "fontSize": 14,
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      Açıklama
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist Butonlar 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="Ana"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#ec3013",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "flex-start",
+          "minHeight": 52,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      aria-hidden="true"
+      bbHeight={18}
+      bbWidth={18}
+      className="lucide lucide-check"
+      fill="none"
+      focusable={false}
+      height={18}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="#f3f2f2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2.5}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 18,
+            "width": 18,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={18}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4294177522,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth={2.5}
+      >
+        <RNSVGPath
+          d="M20 6 9 17l-5-5"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294177522,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2.5}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "color": "#f3f2f2",
+            "flexShrink": 1,
+            "fontSize": 16,
+          },
+        ]
+      }
+    >
+      Ana
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="İkincil"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "flex-start",
+          "minHeight": 48,
+          "opacity": 1,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_600SemiBold",
+          },
+          {
+            "color": "#201e1d",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      İkincil
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Hayalet"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "flex-start",
+          "minHeight": 44,
+          "opacity": 1,
+          "paddingHorizontal": 4,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_600SemiBold",
+          },
+          {
+            "color": "#ec3013",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      Hayalet
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Beyaz"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "flex-start",
+          "minHeight": 48,
+          "opacity": 0.45,
+          "paddingHorizontal": 16,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "color": "#201e1d",
+            "flexShrink": 1,
+            "fontSize": 15,
+          },
+        ]
+      }
+    >
+      Beyaz
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist Cip, Anahtar, Cubuk, Stepper, IkonDugme 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": true,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#201e1d",
+        "borderColor": "#201e1d",
+        "borderRadius": 0,
+        "borderWidth": 1,
+        "justifyContent": "center",
+        "minHeight": 36,
+        "paddingHorizontal": 14,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_600SemiBold",
+          },
+          {
+            "color": "#f3f2f2",
+            "fontSize": 14,
+          },
+        ]
+      }
+    >
+      10
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="Günlük"
+    accessibilityRole="switch"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": true,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    hitSlop={7}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#ec3013",
+        "borderRadius": 0,
+        "height": 30,
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+            "borderRadius": 0,
+            "height": 24,
+            "left": 23,
+            "position": "absolute",
+            "width": 24,
+          },
+          null,
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "backgroundColor": "#d7d3d3",
+        "borderRadius": 0,
+        "height": 6,
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#ec3013",
+          "height": 6,
+          "width": "40%",
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 16,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="Sayfa −"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 1,
+          "height": 52,
+          "justifyContent": "center",
+          "width": 52,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        aria-hidden="true"
+        bbHeight={22}
+        bbWidth={22}
+        className="lucide lucide-minus"
+        fill="none"
+        focusable={false}
+        height={22}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="#201e1d"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 22,
+              "width": 22,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={22}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280294941,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGPath
+            d="M5 12h14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4280294941,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <Text
+      accessibilityLabel="Sayfa 12"
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#201e1d",
+            "fontSize": 64,
+            "letterSpacing": -2.5,
+            "minWidth": 96,
+            "textAlign": "center",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+    <View
+      accessibilityLabel="Sayfa +"
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderColor": "rgba(32,30,29,0.40)",
+          "borderRadius": 0,
+          "borderWidth": 1,
+          "height": 52,
+          "justifyContent": "center",
+          "width": 52,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        aria-hidden="true"
+        bbHeight={22}
+        bbWidth={22}
+        className="lucide lucide-plus"
+        fill="none"
+        focusable={false}
+        height={22}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        stroke="#201e1d"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 22,
+              "width": 22,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={22}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280294941,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        >
+          <RNSVGPath
+            d="M5 12h14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4280294941,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+          <RNSVGPath
+            d="M12 5v14"
+            fill={null}
+            propList={
+              [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4280294941,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={2}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <View
+    accessibilityLabel="Ayarlar"
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#eae9e9",
+        "borderColor": "rgba(32,30,29,0.40)",
+        "borderRadius": 0,
+        "borderWidth": 1,
+        "boxShadow": "none",
+        "height": 44,
+        "justifyContent": "center",
+        "width": 44,
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      aria-hidden="true"
+      bbHeight={20}
+      bbWidth={20}
+      className="lucide lucide-bell"
+      fill="none"
+      focusable={false}
+      height={20}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      stroke="#201e1d"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 20,
+            "width": 20,
+          },
+        ]
+      }
+      vbHeight={24}
+      vbWidth={24}
+      width={20}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4280294941,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeWidth={2}
+      >
+        <RNSVGPath
+          d="M10.268 21a2 2 0 0 0 3.464 0"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280294941,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        />
+        <RNSVGPath
+          d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280294941,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={2}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist Ekran 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#f3f2f2",
+        "flex": 1,
+        "minHeight": 0,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "borderBottomColor": "rgba(32,30,29,0.40)",
+          "borderBottomWidth": 2,
+          "flexDirection": "row",
+          "gap": 12,
+          "paddingBottom": 16,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 55,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flex": 1,
+            "minWidth": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {
+                "fontFamily": "Archivo_600SemiBold",
+              },
+              {
+                "color": "#ec3013",
+                "fontSize": 12,
+                "letterSpacing": 1,
+              },
+            ]
+          }
+        >
+          GÜN 30 / 300
+        </Text>
+        <Text
+          accessibilityRole="header"
+          style={
+            [
+              {
+                "fontFamily": "Archivo_800ExtraBold",
+              },
+              {
+                "color": "#201e1d",
+                "flexShrink": 1,
+                "marginTop": 4,
+              },
+              {
+                "fontSize": 34,
+                "letterSpacing": -0.85,
+                "lineHeight": 36,
+              },
+            ]
+          }
+        >
+          20 Ekim
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "fontFamily": "Archivo_400Regular",
+              },
+              {
+                "color": "rgba(32,30,29,0.58)",
+                "fontSize": 14,
+                "marginTop": 4,
+              },
+            ]
+          }
+        >
+          Salı
+        </Text>
+      </View>
+    </View>
+    <RCTScrollView
+      contentContainerStyle={
+        {
+          "gap": 24,
+          "paddingBottom": 32,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 20,
+        }
+      }
+      keyboardShouldPersistTaps="handled"
+      style={
+        [
+          {
+            "flex": 1,
+          },
+          null,
+        ]
+      }
+    >
+      <View>
+        <View
+          style={
+            {
+              "gap": 24,
+            }
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "backgroundColor": "#eae9e9",
+                  "borderRadius": 0,
+                  "boxShadow": "none",
+                  "gap": 8,
+                  "padding": 16,
+                },
+                {
+                  "borderTopColor": "#201e1d",
+                  "borderTopWidth": 2,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "baseline",
+                  "borderBottomColor": "rgba(32,30,29,0.40)",
+                  "borderBottomWidth": 2,
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "justifyContent": "space-between",
+                  "paddingBottom": 8,
+                }
+              }
+            >
+              <Text
+                accessibilityRole="header"
+                style={
+                  [
+                    {
+                      "fontFamily": "Archivo_800ExtraBold",
+                    },
+                    {
+                      "color": "#201e1d",
+                      "flexShrink": 1,
+                      "fontSize": 18,
+                    },
+                  ]
+                }
+              >
+                Bu hafta
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "fontFamily": "Archivo_400Regular",
+                    },
+                    {
+                      "fontVariant": [
+                        "tabular-nums",
+                      ],
+                    },
+                    {
+                      "color": "rgba(32,30,29,0.58)",
+                      "fontSize": 13,
+                    },
+                  ]
+                }
+              >
+                3 / 4 gün okundu
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist GunDairesi 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="12 okundu"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#201e1d",
+        "borderColor": "#201e1d",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#f3f2f2",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 telafi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#7d7979",
+        "borderColor": "#7d7979",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#f3f2f2",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 kismi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#201e1d",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#201e1d",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "#201e1d",
+          "bottom": 0,
+          "height": 5,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    accessibilityLabel="12 kacirildi"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#ae1800",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#ae1800",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "borderColor": "#ec3013",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "padding": 2,
+        "width": 40,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="12 bugun"
+      style={
+        {
+          "alignItems": "center",
+          "aspectRatio": 1,
+          "backgroundColor": "transparent",
+          "borderColor": "#ec3013",
+          "borderRadius": 0,
+          "borderWidth": 2,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "width": 32,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontFamily": "Archivo_800ExtraBold",
+            },
+            {
+              "fontVariant": [
+                "tabular-nums",
+              ],
+            },
+            {
+              "color": "#ec3013",
+              "fontSize": 14,
+              "textDecorationLine": "none",
+            },
+          ]
+        }
+      >
+        12
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityLabel="12 gelecek"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": "#d7d3d3",
+        "borderRadius": 0,
+        "borderWidth": 2,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "rgba(32,30,29,0.58)",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 duraklatma"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "#d7d3d3",
+        "borderColor": undefined,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "rgba(32,30,29,0.58)",
+            "fontSize": 14,
+            "textDecorationLine": "line-through",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+  <View
+    accessibilityLabel="12 bos"
+    style={
+      {
+        "alignItems": "center",
+        "aspectRatio": 1,
+        "backgroundColor": "transparent",
+        "borderColor": undefined,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "width": 32,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "Archivo_800ExtraBold",
+          },
+          {
+            "fontVariant": [
+              "tabular-nums",
+            ],
+          },
+          {
+            "color": "#d7d3d3",
+            "fontSize": 14,
+            "textDecorationLine": "none",
+          },
+        ]
+      }
+    >
+      12
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
+`;
+
+exports[`modernist SegmentSecici 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityRole="tablist"
+    style={
+      {
+        "borderColor": "rgba(32,30,29,0.40)",
+        "borderRadius": 0,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "overflow": "hidden",
+      }
+    }
+  >
+    <View
+      accessibilityRole="tab"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": true,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#ec3013",
+          "borderLeftColor": "rgba(32,30,29,0.40)",
+          "borderLeftWidth": 0,
+          "flex": 1,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontFamily": "Archivo_600SemiBold",
+            },
+            {
+              "color": "#f3f2f2",
+              "fontSize": 14,
+            },
+          ]
+        }
+      >
+        Açık
+      </Text>
+    </View>
+    <View
+      accessibilityRole="tab"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": false,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "transparent",
+          "borderLeftColor": "rgba(32,30,29,0.40)",
+          "borderLeftWidth": 1,
+          "flex": 1,
+          "justifyContent": "center",
+          "minHeight": 44,
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontFamily": "Archivo_600SemiBold",
+            },
+            {
+              "color": "#201e1d",
+              "fontSize": 14,
+            },
+          ]
+        }
+      >
+        Koyu
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

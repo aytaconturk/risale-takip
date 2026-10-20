@@ -358,6 +358,11 @@ isOneToOne: false
         isOneToOne: true
         isSetofReturn: false
       } },
+"davet_onizleme":
+{ Args: { "p_token": string }; Returns: {
+              "baslangic_tarihi": string,"davet_eden": string,"ders_gunu": string,"ders_saati": string,"gecerli": boolean,"grup_ad": string,"konum": string,"program_ad": string,"uye_sayisi": number
+            }[]
+                           },
 "devam_et":
 { Args: { "kp_id": string }; Returns: undefined
                            },
@@ -374,7 +379,7 @@ isOneToOne: false
                            },
 "grup_durumu":
 { Args: { "p_grup_id": string }; Returns: {
-              "ad": string,"bugun_hatirlatildi": boolean,"bugun_okudu": boolean,"geride_gun": number,"hatirlatma_kabul": boolean,"kullanici_id": string,"kullanici_program_id": string,"rol": string,"seri": number,"soyad": string,"tamamlanan": number
+              "ad": string,"bugun_hatirlatildi": boolean,"bugun_okudu": boolean,"bugunku_gun": number,"geride_gun": number,"hatirlatma_kabul": boolean,"kullanici_id": string,"kullanici_program_id": string,"rol": string,"seri": number,"soyad": string,"tamamlanan": number
             }[]
                            },
 "grup_kur":
@@ -422,14 +427,29 @@ isOneToOne: false
 "kullanici_bugun":
 { Args: Record<PropertyKey, never>; Returns: string
                            },
+"nci_okuma_gunu":
+{ Args: { "p_baslangic": string,"p_gunler": string,"p_n": number }; Returns: string
+                           },
+"program_bitis":
+{ Args: { "p_baslangic": string,"p_program_id": string }; Returns: string
+                           },
 "program_gorunur":
 { Args: { "p_program_id": string }; Returns: boolean
+                           },
+"program_gunleri":
+{ Args: { "p_program_id": string }; Returns: string
+                           },
+"program_onizleme":
+{ Args: { "p_baslangic"?: string,"p_gunler": string,"p_gunluk": number,"p_kitaplar": Json }; Returns: Record<string, unknown>
                            },
 "program_toplam":
 { Args: { "p_program_id": string }; Returns: Record<string, unknown>
                            },
 "programa_basla":
 { Args: { "p_baslangic"?: string,"p_program_id": string }; Returns: string
+                           },
+"sonraki_ders":
+{ Args: { "p_grup_id": string }; Returns: string
                            },
 "takvim":
 { Args: { "bas": string,"kp_id": string,"son": string }; Returns: {

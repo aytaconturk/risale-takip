@@ -1,67 +1,76 @@
-import { useQuery } from '@tanstack/react-query';
-import type { ReactNode } from 'react';
-import { View } from 'react-native';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Text, View } from 'react-native';
 
 import { ilerlemeVerisi } from '@/src/api/ilerleme';
-import type { SymbolViewProps } from 'expo-symbols';
-
-import { Cubuk, Ekran, Etiket, IkonKutu, Kart, Satir, Yazi, Yukleniyor } from '@/src/components/ui';
+import { BolumBasligi, Cubuk, Ekran, Kolon, rakam, Serit, tip, Yukleniyor } from '@/src/components/ui';
 import { t } from '@/src/i18n';
-import { uzunTarih, yuzde } from '@/src/lib/bicim';
+import { kisaTarih, sayi, yuzde } from '@/src/lib/bicim';
 import { useRenkler } from '@/src/lib/tema';
 import { useAktifProgram } from '@/src/lib/useAktifProgram';
 
-type Ikon = { ad: SymbolViewProps['name']; renk: string; zemin: string };
-
-function Kutu({ etiket, deger, alt, ikon }: { etiket: string; deger: ReactNode; alt?: string; ikon: Ikon }) {
-  return (
-    <Kart style={{ flex: 1 }}>
-      <IkonKutu {...ikon} boyut={32} />
-      <Yazi tur="soluk">{etiket}</Yazi>
-      <Yazi tur="buyuk">{deger}</Yazi>
-      {alt ? <Yazi tur="soluk">{alt}</Yazi> : null}
-    </Kart>
-  );
-}
-
 export default function IlerlemeEkrani() {
   const r = useRenkler();
+  const qc = useQueryClient();
   const { kp } = useAktifProgram();
   const q = useQuery({ queryKey: ['ilerleme', kp?.id], queryFn: () => ilerlemeVerisi(kp!), enabled: !!kp });
-  if (!q.data) return <Yukleniyor />;
+  if (!q.data || !kp) return <Yukleniyor />;
   const { ilerleme: i, bitis, kitaplar } = q.data;
-  const ik = (ios: string, web: string, renk: string, zemin: string): Ikon =>
-    ({ ad: { ios, android: web, web } as SymbolViewProps['name'], renk, zemin });
+  const sira = kitaplar.findIndex((k) => k.okunan < k.uzunluk);
 
   return (
-    <Ekran baslik={t('ilerleme.baslik')} alt={kp?.grup?.ad ?? kp?.program?.ad}>
-      <Satir style={{ alignItems: 'stretch' }}>
-        <Kutu ikon={ik('book.fill', 'menu_book', r.marka, r.markaAcik)} etiket={t('ilerleme.okunanSayfa')} deger={i.okunan_sayfa}
-          alt={t('ilerleme.sayfaninYuzde', { toplam: i.toplam_sayfa, yuzde: yuzde(i.yuzde) })} />
-        <Kutu ikon={ik('checkmark.circle.fill', 'task_alt', r.basari, r.basariAcik)} etiket={t('ilerleme.okunanGun')} deger={`${i.tamamlanan_gun} / ${i.bugunku_gun}`} />
-      </Satir>
-      <Satir style={{ alignItems: 'stretch' }}>
-        <Kutu ikon={ik('flame.fill', 'local_fire_department', r.turuncu, r.turuncuAcik)} etiket={t('ilerleme.seri')} deger={t('genel.gun', { n: i.seri })} />
-        <Kutu ikon={ik('clock.arrow.circlepath', 'history', r.tehlike, r.tehlikeAcik)} etiket={t('ilerleme.kacirilan')} deger={t('genel.gun', { n: i.geride_gun })} />
-      </Satir>
-      <Satir style={{ alignItems: 'stretch' }}>
-        <Kutu ikon={ik('hourglass', 'hourglass_top', r.mor, r.morAcik)} etiket={t('ilerleme.kalan')} deger={t('genel.gun', { n: i.toplam_gun - i.tamamlanan_gun })}
-          alt={t('genel.sayfa', { n: i.toplam_sayfa - i.okunan_sayfa })} />
-        <Kutu ikon={ik('flag.checkered', 'flag', r.basari, r.basariAcik)} etiket={t('ilerleme.bitis')} deger={bitis ? uzunTarih(bitis) : t('ilerleme.duraklatmada')} />
-      </Satir>
+    <Ekran
+      ust={t('ilerleme.baslik')}
+      baslik={t('bugun.kulliyat')}
+      alt={t('ilerleme.ozet', { kitap: kitaplar.length, sayfa: sayi(i.toplam_sayfa), gun: i.toplam_gun })}
+      yenile={() => qc.invalidateQueries()}>
+      <Kolon>
+        <View style={{ gap: 4 }}>
+          <Text style={[tip(r, 'kalin'), rakam, { fontSize: 88, lineHeight: 88, letterSpacing: -4.4, color: r.vurgu }]}>{yuzde(i.yuzde)}</Text>
+          <Text style={[tip(r, 'normal'), { fontSize: 15, color: r.soluk }]}>
+            {t('ilerleme.okunanOzet', { toplam: sayi(i.toplam_sayfa), n: sayi(i.okunan_sayfa) })}
+          </Text>
+        </View>
 
-      <Kart>
-        <Etiket>{t('program.kitaplar')}</Etiket>
-        {kitaplar.map((k, n) => (
-          <View key={k.kitap_ad} style={{ gap: 4, paddingVertical: 4 }}>
-            <Satir style={{ justifyContent: 'space-between' }}>
-              <Yazi>{`${n + 1}. ${k.kitap_ad}`}</Yazi>
-              <Yazi tur="soluk">{`${k.okunan} / ${k.uzunluk}`}</Yazi>
-            </Satir>
-            <Cubuk oran={k.okunan / k.uzunluk} renk={k.okunan === k.uzunluk ? r.basari : r.marka} />
+        {/* Her parça bir kitap; genişlik sayfa sayısıyla orantılı, okunan kısım soldan dolar */}
+        <View style={{ gap: 8 }}>
+          <View style={{ flexDirection: 'row', height: 44, gap: 2 }}>
+            {kitaplar.map((k) => (
+              <View key={k.kitap_ad} accessibilityLabel={`${k.kitap_ad} ${k.okunan} / ${k.uzunluk}`}
+                style={{ flexGrow: k.uzunluk, flexBasis: 0, backgroundColor: r.iz, borderRadius: r.rKucuk, overflow: 'hidden' }}>
+                <View style={{ width: `${(k.okunan / Math.max(1, k.uzunluk)) * 100}%`, height: '100%', backgroundColor: r.metin }} />
+              </View>
+            ))}
           </View>
-        ))}
-      </Kart>
+          <Text style={[tip(r, 'normal'), { fontSize: 12, color: r.soluk }]}>{t('ilerleme.serit')}</Text>
+        </View>
+
+        <Serit sutun={3} degerBoyut={20} hucreler={[
+          { etiket: t('ilerleme.okunanGun'), deger: `${i.tamamlanan_gun} / ${i.bugunku_gun}` },
+          { etiket: t('bugun.seri'), deger: t('genel.gun', { n: i.seri }) },
+          { etiket: t('ilerleme.kacirilan'), deger: t('genel.gun', { n: i.geride_gun }), renk: i.geride_gun > 0 ? r.kacirildi : undefined },
+          { etiket: t('ilerleme.kalan'), deger: t('genel.gun', { n: i.toplam_gun - i.tamamlanan_gun }) },
+          { etiket: t('ilerleme.gunluk'), deger: t('genel.sayfa', { n: kp.program?.gunluk_sayfa ?? 0 }) },
+          { etiket: t('ilerleme.bitis'), deger: bitis ? kisaTarih(bitis) : t('ilerleme.duraklatmada') },
+        ]} />
+      </Kolon>
+
+      <Kolon>
+        <View>
+          <BolumBasligi baslik={t('ilerleme.kitaplar')} sag={t('ilerleme.programSirasi')} />
+          {kitaplar.map((k, n) => (
+            <View key={k.kitap_ad}
+              style={{ flexDirection: 'row', alignItems: 'center', minHeight: 44, paddingVertical: 6, gap: 8, borderBottomWidth: 1, borderBottomColor: r.kenar,
+                opacity: n > sira && sira >= 0 && k.okunan === 0 ? 0.55 : 1 }}>
+              <Text style={[tip(r, 'normal'), rakam, { width: 24, fontSize: 12, color: r.soluk }]}>{n + 1}</Text>
+              <View style={{ flex: 1, minWidth: 0, gap: 4 }}>
+                <Text numberOfLines={1} style={[tip(r, 'yari'), { fontSize: 14, color: r.metin }]}>{k.kitap_ad}</Text>
+                <Cubuk oran={k.okunan / Math.max(1, k.uzunluk)} kalinlik={3} />
+              </View>
+              <Text style={[tip(r, 'normal'), rakam, { width: 72, textAlign: 'right', fontSize: 12, color: r.soluk }]}>{`${k.okunan} / ${k.uzunluk}`}</Text>
+            </View>
+          ))}
+        </View>
+      </Kolon>
     </Ekran>
   );
 }

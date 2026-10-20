@@ -14,6 +14,18 @@ async function kayit() {
   return navigator.serviceWorker.register(`${taban}/sw.js`, { scope: `${taban}/` });
 }
 
+// Her açılışta kaydedilir; yeni sürümün SW'si kontrolü alınca sayfa yeniden yüklenir.
+export function swKaydet(yeniSurum: () => void) {
+  if (typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return;
+  const eskiVar = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!eskiVar) return;
+    yeniSurum();
+    setTimeout(() => window.location.reload(), 1500);
+  });
+  kayit().catch(() => {});
+}
+
 export async function webPushDurumu(): Promise<WebPushDurumu> {
   if (typeof navigator === 'undefined' || !('serviceWorker' in navigator) || !anahtar) return 'desteklenmiyor';
   // iOS Safari'de PushManager yalnızca ana ekrana eklenmiş PWA'da vardır

@@ -1,4 +1,4 @@
-import { bugunVerisi, gunuIsaretle, topluTelafi } from '@/src/api/bugun';
+import { bugunVerisi, cetvelDokunus, gunuIsaretle, sayfaKaydet, topluTelafi } from '@/src/api/bugun';
 import { arg, cagrilar, sifirla, sonuclar } from '@/src/test/sahteSupabase';
 
 jest.mock('@/src/lib/supabase', () => require('@/src/test/sahteSupabase').modul);
@@ -43,4 +43,43 @@ test('toplu telafi tek istekte kaynak=toplu', async () => {
     { kullanici_program_id: 'c4', gun_no: 2, okunan_sayfa: null, kaynak: 'toplu' },
     { kullanici_program_id: 'c4', gun_no: 3, okunan_sayfa: null, kaynak: 'toplu' },
   ]);
+});
+
+test('kısmi kayıtlar gün numarasına göre döner; bugünkü kısmi ayrıca verilir', async () => {
+  sonuclar.ilerleme = { bugunku_gun: 7 };
+  sonuclar.okuma_kayitlari = [{ gun_no: 3, okunan_sayfa: 12 }, { gun_no: 7, okunan_sayfa: 6 }];
+  const v = await bugunVerisi({ id: 'c5', program_id: 'p1' });
+  expect(v.kismiler).toEqual({ 3: 12, 7: 6 });
+  expect(v.kismiSayfa).toBe(6);
+});
+
+describe('sayfa cetveli', () => {
+  test('i. kutuya dokununca i+1 sayfa okunmuş sayılır', () => {
+    expect(cetvelDokunus(0, 11)).toBe(12);
+    expect(cetvelDokunus(12, 4)).toBe(5);
+    expect(cetvelDokunus(5, 19)).toBe(20);
+  });
+  test('son dolu kutuya dokunmak bir sayfa geri alır', () => {
+    expect(cetvelDokunus(12, 11)).toBe(11);
+    expect(cetvelDokunus(1, 0)).toBe(0);
+  });
+
+  test('12. kutu kısmi 12 yazar', async () => {
+    await sayfaKaydet('c1', 30, cetvelDokunus(0, 11), 20);
+    expect((arg('upsert')![0] as { okunan_sayfa: number }).okunan_sayfa).toBe(12);
+  });
+  test('20. kutu tam okuma yazar (okunan_sayfa boş)', async () => {
+    await sayfaKaydet('c1', 30, cetvelDokunus(12, 19), 20);
+    expect((arg('upsert')![0] as { okunan_sayfa: number | null }).okunan_sayfa).toBeNull();
+  });
+  test('0 sayfa kaydı siler', async () => {
+    await sayfaKaydet('c1', 30, cetvelDokunus(1, 0), 20);
+    expect(cagrilar.map(([a]) => a)).toEqual(['from', 'delete', 'eq', 'eq']);
+    expect(arg('eq', 1)).toEqual(['gun_no', 30]);
+  });
+});
+
+test('kısmen okudum: stepper değeri kısmi olarak kaydedilir', async () => {
+  await sayfaKaydet('c1', 30, 7, 20);
+  expect(arg('upsert')![0]).toEqual({ kullanici_program_id: 'c1', gun_no: 30, okunan_sayfa: 7, kaynak: 'uygulama' });
 });

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Risale Takip" />
+  <meta name="theme-color" content="#f3f2f2" />
+  <link rel="manifest" href="%WEB_PUBLIC_URL%/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="%WEB_PUBLIC_URL%/ikon-180.png" />
+  <title>Risale Takip</title>
+  <style id="pwa-kabuk">
+    html, body, #root { height: 100%; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      margin: 0; overflow: hidden; overscroll-behavior: none;
+      background: var(--zemin, #f3f2f2);
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+    }
+    @media (prefers-color-scheme: dark) { body { background: var(--zemin, #201e1d); } }
+    #root { display: flex; flex-direction: column; height: var(--vvh, 100dvh); }
+    @supports not (height: 100dvh) { #root { height: var(--vvh, 100vh); } }
+    input, textarea, select { font-size: 16px; -webkit-appearance: none; appearance: none; border-radius: 0; }
+    button, [role="button"], a { touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+    input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }
+    *:focus { outline: none; }
+    *:focus-visible { outline: 2px solid var(--vurgu, #ec3013); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <noscript>Bu uygulama için JavaScript gereklidir.</noscript>
+  <div id="root"></div>
+</body>
+</html>

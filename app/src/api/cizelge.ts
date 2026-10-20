@@ -7,8 +7,8 @@ export async function takvim(kpId: string, bas: string, son: string) {
   return satirlar.map((s) => ({ ...s, durum: s.durum as GunDurumu }));
 }
 
-// Ay özeti: okunan gün ve sayfa (kısmi günler okunan sayfası kadar)
-export function ayOzeti(gunler: { durum: GunDurumu }[], gunlukSayfa: number) {
-  const okunan = gunler.filter((g) => g.durum === 'okundu' || g.durum === 'telafi').length;
-  return { okunanGun: okunan, sayfa: okunan * gunlukSayfa };
+// Ay özeti: okunan (telafi dahil), kısmi ve kaçırılan gün sayısı
+export function ayOzeti(gunler: { durum: GunDurumu }[]) {
+  const say = (...d: GunDurumu[]) => gunler.filter((g) => d.includes(g.durum)).length;
+  return { okunan: say('okundu', 'telafi'), kismi: say('kismi'), kacirilan: say('kacirildi') };
 }
