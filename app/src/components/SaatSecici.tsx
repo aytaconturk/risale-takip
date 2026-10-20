@@ -2,6 +2,7 @@ import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/d
 import { Platform } from 'react-native';
 
 import { Cip } from '@/src/components/ui';
+import { ceyrek } from '@/src/lib/bicim';
 import { useRenkler } from '@/src/lib/tema';
 
 const tarih = (saat: string) => {
@@ -10,14 +11,14 @@ const tarih = (saat: string) => {
   t.setHours(s, d, 0, 0);
   return t;
 };
-const metin = (t: Date) => `${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
+const metin = (t: Date) => ceyrek(`${t.getHours()}:${t.getMinutes()}`);
 
-// iOS: saat çarkı (alarm kurar gibi); Android: sistem saat penceresi
+// iOS: saat çarkı (alarm kurar gibi), dakikalar 15'er; Android: sistem saat penceresi, seçim çeyreğe yuvarlanır
 export function SaatSecici({ deger, degistir, etiket }: { deger: string; degistir: (saat: string) => void; etiket: string }) {
   const r = useRenkler();
   if (Platform.OS === 'ios') {
     return (
-      <DateTimePicker accessibilityLabel={etiket} value={tarih(deger)} mode="time" display="compact" locale="tr-TR"
+      <DateTimePicker accessibilityLabel={etiket} value={tarih(deger)} mode="time" display="compact" locale="tr-TR" minuteInterval={15}
         themeVariant={r.koyu ? 'dark' : 'light'} accentColor={r.vurgu} onChange={(_, t) => t && degistir(metin(t))} />
     );
   }

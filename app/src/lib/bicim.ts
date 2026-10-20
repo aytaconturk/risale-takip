@@ -106,6 +106,13 @@ export function saatBicimle(girdi: string): string {
   return d.length > 2 ? `${d.slice(0, 2)}:${d.slice(2)}` : d;
 }
 
+// Günlük hatırlatma cron'u 15 dakikada bir çalışır (0004_cron.sql); saat en yakın çeyreğe yuvarlanır
+export function ceyrek(saat: string): string {
+  const [s, d] = saat.split(':').map(Number);
+  const dk = (Math.round((s * 60 + d) / 15) * 15) % 1440;
+  return `${String(Math.floor(dk / 60)).padStart(2, '0')}:${String(dk % 60).padStart(2, '0')}`;
+}
+
 export const SAAT = /^([01]\d|2[0-3]):[0-5]\d$/;
 
 export function sayi(n: number): string {
