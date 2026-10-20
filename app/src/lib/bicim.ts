@@ -100,6 +100,14 @@ export function telefonGecerli(girdi: string): boolean {
 }
 
 // Binlik ayırıcı nokta: 5.999
+// iOS sayısal klavyede ":" yok; yazarken "0915" → "09:15"
+export function saatBicimle(girdi: string): string {
+  const d = girdi.replace(/\D/g, '').slice(0, 4);
+  return d.length > 2 ? `${d.slice(0, 2)}:${d.slice(2)}` : d;
+}
+
+export const SAAT = /^([01]\d|2[0-3]):[0-5]\d$/;
+
 export function sayi(n: number): string {
   return n.toLocaleString('tr-TR');
 }

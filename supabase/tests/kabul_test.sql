@@ -3,7 +3,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set local app.bugun = '2026-10-25';
-select plan(33);
+select plan(35);
 
 create function pg_temp.u(onek int, no int) returns uuid language sql immutable as $$
   select format('00000000-0000-0000-%s-%s', lpad(to_hex(onek), 4, '0'), lpad(to_hex(no), 12, '0'))::uuid
@@ -87,6 +87,10 @@ reset role;
 select is((select array_agg(kullanici_id) from gunluk_hatirlatma_adaylari('2026-10-25 22:05+03')),
   array[pg_temp.u(1, 4)], 'cron: 22:05 adayı yalnızca k4');
 select is((select count(*)::int from gunluk_hatirlatma_adaylari('2026-10-25 21:35+03')), 0, 'cron: 21:35 aday yok');
+-- Birden fazla saat: k4 07:00 ve 22:00
+update kullanici set hatirlatma_saatleri = '{07:00,22:00}' where id = pg_temp.u(1, 4);
+select ok(pg_temp.u(1, 4) = any(array(select kullanici_id from gunluk_hatirlatma_adaylari('2026-10-25 07:05+03'))), 'cron: k4 07:05 aday');
+select ok(pg_temp.u(1, 4) = any(array(select kullanici_id from gunluk_hatirlatma_adaylari('2026-10-25 22:05+03'))), 'cron: k4 22:05 hâlâ aday');
 select is((select count(*)::int from cron.job where jobname = 'gunluk-hatirlatma' and schedule = '*/15 * * * *'), 1,
   'cron: 15 dakikada bir zamanlandı');
 

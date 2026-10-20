@@ -1,19 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Platform, Text, View } from 'react-native';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { cikis, devamEt, duraklat, hatirlatmaKabul, hesabiSil, profilGuncelle, SAAT_DILIMLERI } from '@/src/api/ayarlar';
 import { profil } from '@/src/api/giris';
-import { AltSayfa, Anahtar, Buton, Cip, Girdi, onayla, SayfaBasligi, SegmentSecici, Satir, tip, Yazi, Yukleniyor } from '@/src/components/ui';
+import { SaatSecici } from '@/src/components/SaatSecici';
+import { AltSayfa, Anahtar, Buton, Cip, IkonDugme, onayla, SayfaBasligi, SegmentSecici, Satir, tip, Yazi, Yukleniyor } from '@/src/components/ui';
 import { t } from '@/src/i18n';
 import { useRenkler } from '@/src/lib/tema';
 import { useAktifProgram } from '@/src/lib/useAktifProgram';
 import { webPushAc, webPushDurumu } from '@/src/lib/webPush';
 import { useUi } from '@/src/store';
-
-const SAAT = /^([01]\d|2[0-3]):[0-5]\d$/;
 
 // Mobilde alttan, geniş ekranda ortada açılır
 export default function Ayarlar() {
@@ -34,17 +33,18 @@ function AyarlarIcerik({ kapat }: { kapat: () => void }) {
   const koyu = useColorScheme() === 'dark';
   const p = useQuery({ queryKey: ['profil'], queryFn: profil });
   const { data: programlar } = useAktifProgram();
-  const [saat, setSaat] = useState('');
+  const [saat, setSaat] = useState('21:00');
   const islem = useMutation({
     mutationFn: (f: () => Promise<void>) => f(),
     onSuccess: () => qc.invalidateQueries(),
     onError: () => bildir(t('genel.hata')),
   });
-  useEffect(() => setSaat(p.data?.hatirlatma_saati?.slice(0, 5) ?? ''), [p.data?.hatirlatma_saati]);
 
   if (!p.data) return <Yukleniyor />;
   const k = p.data;
-  const saatKaydet = () => SAAT.test(saat) && saat !== k.hatirlatma_saati?.slice(0, 5) && islem.mutate(() => profilGuncelle({ hatirlatma_saati: saat }));
+  const saatler = k.hatirlatma_saatleri.map((s) => s.slice(0, 5));
+  const saatlerKaydet = (yeni: string[]) => islem.mutate(() => profilGuncelle({ hatirlatma_saatleri: yeni.sort() }));
+  const saatEkle = () => !saatler.includes(saat) && saatlerKaydet([...saatler, saat]);
 
   return (
     <>
@@ -73,12 +73,14 @@ function AyarlarIcerik({ kapat }: { kapat: () => void }) {
               degistir={(v) => islem.mutate(() => hatirlatmaKabul(g.id, v))} />
           </SatirAyar>
         ))}
-        <SatirAyar baslik={t('ayarlar.saat')}>
-          <View style={{ width: 110 }}>
-            <Girdi etiket={t('ayarlar.saat')} etiketGizli value={saat} onChangeText={(v) => setSaat(v.replace(/[^\d:]/g, '').slice(0, 5))}
-              placeholder="21:30" inputMode="numeric" keyboardType="numbers-and-punctuation" maxLength={5}
-              returnKeyType="done" enterKeyHint="done" onBlur={saatKaydet} onSubmitEditing={saatKaydet} />
-          </View>
+        {saatler.map((s) => (
+          <SatirAyar key={s} baslik={s}>
+            <IkonDugme ad="kapat" etiket={t('ayarlar.saatSil', { saat: s })} onPress={() => saatlerKaydet(saatler.filter((x) => x !== s))} />
+          </SatirAyar>
+        ))}
+        <SatirAyar baslik={t('ayarlar.saatEkle')}>
+          <SaatSecici etiket={t('ayarlar.saatEkle')} deger={saat} degistir={setSaat} />
+          <IkonDugme ad="arti" etiket={t('ayarlar.saatEkle')} onPress={saatEkle} />
         </SatirAyar>
         <View style={{ gap: 8, paddingVertical: 12 }}>
           <Yazi tur="soluk">{t('ayarlar.saatDilimi')}</Yazi>

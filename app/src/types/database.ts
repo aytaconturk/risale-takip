@@ -169,14 +169,14 @@ isOneToOne: false
                   ]
                 },"kullanici": {
                   Row: {
-                    "ad": string,"dil": string,"eposta": string | null,"hatirlatma_acik": boolean,"hatirlatma_saati": string | null,"id": string,"kayit_tarihi": string,"saat_dilimi": string,"silinme_tarihi": string | null,"soyad": string | null,"telefon": string | null
+                    "ad": string,"dil": string,"eposta": string | null,"hatirlatma_acik": boolean,"hatirlatma_saatleri": (string)[],"id": string,"kayit_tarihi": string,"saat_dilimi": string,"silinme_tarihi": string | null,"soyad": string | null,"telefon": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "ad": string,"dil"?: string,"eposta"?: string | null,"hatirlatma_acik"?: boolean,"hatirlatma_saati"?: string | null,"id"?: string,"kayit_tarihi"?: string,"saat_dilimi"?: string,"silinme_tarihi"?: string | null,"soyad"?: string | null,"telefon"?: string | null
+                    "ad": string,"dil"?: string,"eposta"?: string | null,"hatirlatma_acik"?: boolean,"hatirlatma_saatleri"?: (string)[],"id"?: string,"kayit_tarihi"?: string,"saat_dilimi"?: string,"silinme_tarihi"?: string | null,"soyad"?: string | null,"telefon"?: string | null
                   }
                   Update: {
-                    "ad"?: string,"dil"?: string,"eposta"?: string | null,"hatirlatma_acik"?: boolean,"hatirlatma_saati"?: string | null,"id"?: string,"kayit_tarihi"?: string,"saat_dilimi"?: string,"silinme_tarihi"?: string | null,"soyad"?: string | null,"telefon"?: string | null
+                    "ad"?: string,"dil"?: string,"eposta"?: string | null,"hatirlatma_acik"?: boolean,"hatirlatma_saatleri"?: (string)[],"id"?: string,"kayit_tarihi"?: string,"saat_dilimi"?: string,"silinme_tarihi"?: string | null,"soyad"?: string | null,"telefon"?: string | null
                   }
                   Relationships: [
                     

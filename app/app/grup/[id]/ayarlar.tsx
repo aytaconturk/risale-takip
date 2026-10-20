@@ -7,7 +7,7 @@ import { grupDetayi } from '@/src/api/gruplar';
 import { davetDurumu, davetIptal, davetler, dersGuncelle, uyeCikar } from '@/src/api/grupAyarlari';
 import { BolumBasligi, Buton, Cip, Ekran, Girdi, IkonDugme, Kolon, onayla, Satir, tip, Yukleniyor } from '@/src/components/ui';
 import { t } from '@/src/i18n';
-import { KISA_GUNLER, kisaTarih } from '@/src/lib/bicim';
+import { KISA_GUNLER, kisaTarih, SAAT, saatBicimle } from '@/src/lib/bicim';
 import { benimId } from '@/src/lib/supabase';
 import { useRenkler } from '@/src/lib/tema';
 import { useUi } from '@/src/store';
@@ -88,13 +88,13 @@ export default function GrupAyarlari() {
               ))}
             </Satir>
           </View>
-          <Girdi etiket={t('grupAyar.dersSaati')} value={ders.ders_saati} onChangeText={(v) => setDers({ ...ders, ders_saati: v.replace(/[^\d:]/g, '').slice(0, 5) })}
-            placeholder="20:30" inputMode="numeric" keyboardType="numbers-and-punctuation" returnKeyType="next" enterKeyHint="next" />
+          <Girdi etiket={t('grupAyar.dersSaati')} value={ders.ders_saati} onChangeText={(v) => setDers({ ...ders, ders_saati: saatBicimle(v) })}
+            placeholder="20:30" inputMode="numeric" keyboardType="numbers-and-punctuation" maxLength={5} returnKeyType="next" enterKeyHint="next" />
           <Girdi etiket={t('grupAyar.konum')} value={ders.konum} onChangeText={(v) => setDers({ ...ders, konum: v })} returnKeyType="done" enterKeyHint="done" />
           <Buton
             buyuk
             baslik={t('genel.kaydet')}
-            pasif={!!ders.ders_saati && !/^([01]\d|2[0-3]):[0-5]\d$/.test(ders.ders_saati)}
+            pasif={!!ders.ders_saati && !SAAT.test(ders.ders_saati)}
             yukleniyor={islem.isPending}
             onPress={() => islem.mutate(async () => {
               await dersGuncelle(id, { ders_gunu: ders.ders_gunu, ders_saati: ders.ders_saati || null, konum: ders.konum.trim() || null });

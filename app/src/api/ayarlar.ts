@@ -3,7 +3,7 @@ import type { Database, Json } from '@/src/types/database';
 
 type KullaniciGuncelle = Pick<
   Database['public']['Tables']['kullanici']['Update'],
-  'hatirlatma_acik' | 'hatirlatma_saati' | 'saat_dilimi'
+  'hatirlatma_acik' | 'hatirlatma_saatleri' | 'saat_dilimi'
 >;
 
 export async function profilGuncelle(alanlar: KullaniciGuncelle) {

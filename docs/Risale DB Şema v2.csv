@@ -5,7 +5,7 @@ kullanici,soyad,text,hayır,,,,
 kullanici,telefon,text,hayır,,UNIQUE,E.164 biçimi (+90...),
 kullanici,eposta,text,hayır,,UNIQUE,,
 kullanici,hatirlatma_acik,bool,evet,true,,Günlük kendi hatırlatması,
-kullanici,hatirlatma_saati,time,hayır,21:00,,Yerel saat,
+kullanici,hatirlatma_saatleri,time[],evet,{21:00},,"Yerel saatler; boş dizi = saat yok (0012)",yeni
 kullanici,saat_dilimi,text,evet,Europe/Istanbul,,"Gün sınırı ve hatırlatma bu dilime göre hesaplanır",yeni
 kullanici,dil,text,evet,tr,"tr | en",,yeni
 kullanici,kayit_tarihi,timestamptz,evet,now(),,,

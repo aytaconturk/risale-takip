@@ -5,8 +5,8 @@ jest.mock('@/src/lib/supabase', () => require('@/src/test/sahteSupabase').modul)
 beforeEach(sifirla);
 
 test('profil yalnızca kendi satırını günceller', async () => {
-  await profilGuncelle({ hatirlatma_saati: '21:30' });
-  expect(arg('update')).toEqual([{ hatirlatma_saati: '21:30' }]);
+  await profilGuncelle({ hatirlatma_saatleri: ['21:30'] });
+  expect(arg('update')).toEqual([{ hatirlatma_saatleri: ['21:30'] }]);
   expect(arg('eq')).toEqual(['id', 'ben']);
 });
 

@@ -90,7 +90,7 @@ def main():
         )
         o.append(
             f"update kullanici set ad = {q(k['ad'])}, soyad = {q(k['soyad'])}, telefon = {q(k['telefon'])}, "
-            f"eposta = {q(k['eposta'])}, hatirlatma_acik = {q(k['hatirlatma_acik'])}, hatirlatma_saati = {q(k['hatirlatma_saati'])}, "
+            f"eposta = {q(k['eposta'])}, hatirlatma_acik = {q(k['hatirlatma_acik'])}, hatirlatma_saatleri = {q('{' + k['hatirlatma_saati'] + '}')}, "
             f"saat_dilimi = {q(k['saat_dilimi'])}, dil = {q(k['dil'])}, kayit_tarihi = {q(k['kayit_tarihi'])}, "
             f"silinme_tarihi = {q(k['silinme_tarihi'])} where id = {ref(k['id'])};"
         )
