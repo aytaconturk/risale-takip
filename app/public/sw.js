@@ -26,7 +26,8 @@ self.addEventListener('push', (e) => {
   e.waitUntil(self.registration.showNotification(v.baslik || 'Risale Takip', {
     body: v.govde,
     icon: 'ikon-192.png',
-    data: { url: self.registration.scope + (v.veri && v.veri.ekran ? v.veri.ekran : '') },
+    // Dokununca ilgili ekran; kp varsa o program seçili açılır
+    data: { url: self.registration.scope + (v.veri && v.veri.ekran ? v.veri.ekran : '') + (v.veri && v.veri.kp ? '?kp=' + v.veri.kp : '') },
   }));
 });
 

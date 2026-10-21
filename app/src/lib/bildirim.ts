@@ -1,5 +1,7 @@
 import Constants from 'expo-constants';
+import { router } from 'expo-router';
 import * as Notifications from 'expo-notifications';
+import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 import { cihazKaydet } from '@/src/api/ayarlar';
@@ -21,4 +23,20 @@ export async function pushKaydet() {
   } catch (e) {
     console.warn('push kaydı yapılamadı', e);
   }
+}
+
+// Bildirime dokununca ilgili ekran açılır (webde sw.js yapar). Soğuk açılışta son yanıt bir kez işlenip silinir.
+export function useBildirimYonlendir(oturumVar: boolean) {
+  useEffect(() => {
+    if (Platform.OS === 'web' || !oturumVar) return;
+    const git = (y: Notifications.NotificationResponse | null) => {
+      const v = y?.notification.request.content.data as { ekran?: string; kp?: string } | undefined;
+      if (!v?.ekran) return;
+      Notifications.clearLastNotificationResponseAsync();
+      router.navigate({ pathname: `/${v.ekran}` as never, params: v.kp ? { kp: v.kp } : {} });
+    };
+    Notifications.getLastNotificationResponseAsync().then(git);
+    const abonelik = Notifications.addNotificationResponseReceivedListener(git);
+    return () => abonelik.remove();
+  }, [oturumVar]);
 }

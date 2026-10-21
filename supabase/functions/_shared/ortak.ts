@@ -25,6 +25,15 @@ export function davetLinkleri(adres: string, token: string, telefon: string | nu
 
 export type PushMesaji = { baslik: string; govde: string; veri?: Record<string, unknown> };
 
+// Kişi başına tek günlük hatırlatma; birden çok program tek bildirimde. Dokununca Bugün, ilk program seçili açılır.
+export function gunlukMesaj(programlar: { kp: string; ad: string; gun_no: number }[]): PushMesaji {
+  const [ilk] = programlar;
+  const govde = programlar.length === 1
+    ? `${ilk.ad}: bugünkü ${ilk.gun_no}. gün okumanızı henüz işaretlemediniz.`
+    : `Bugünkü okumanızı henüz işaretlemediniz: ${programlar.map((p) => `${p.ad} (${p.gun_no}. gün)`).join(", ")}.`;
+  return { baslik: "Günlük okuma", govde, veri: { ekran: "bugun", kp: ilk.kp } };
+}
+
 // Expo Push API'ye gönderir; geçersizleşen (DeviceNotRegistered) token'ları döndürür.
 export async function pushGonder(
   tokenlar: string[],

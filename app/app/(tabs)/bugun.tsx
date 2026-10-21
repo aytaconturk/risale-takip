@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Link, router } from 'expo-router';
-import type { ReactNode } from 'react';
+import { Link, router, useLocalSearchParams } from 'expo-router';
+import { useEffect, type ReactNode } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { acikProgramlar, bugunVerisi, gunAraligi, gunuIsaretle, programaBasla, topluTelafi } from '@/src/api/bugun';
@@ -20,6 +20,12 @@ type Kp = NonNullable<ReturnType<typeof useAktifProgram>['kp']>;
 
 export default function Bugun() {
   const { kp, isLoading } = useAktifProgram();
+  // Bildirimden gelindiyse (?kp=) o program seçilir
+  const hedef = useLocalSearchParams<{ kp?: string }>().kp;
+  const kpSec = useUi((s) => s.kpSec);
+  useEffect(() => {
+    if (hedef) kpSec(hedef);
+  }, [hedef, kpSec]);
   if (isLoading) return <Yukleniyor />;
   if (!kp) return <ProgramSec />;
   return <BugunIcerik kp={kp} />;

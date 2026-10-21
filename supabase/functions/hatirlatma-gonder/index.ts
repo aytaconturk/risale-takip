@@ -21,6 +21,10 @@ Deno.serve(async (req) => {
   const metin = `${s.alan_ad}, okuma programınızda ${s.geride_gun} gün geridesiniz. Bugün telafi etmeyi deneyebilirsiniz.`;
   if (kanal === "whatsapp") return yanit({ ...s, whatsapp: waLink(s.telefon, metin) });
 
-  await kullaniciyaPush(servisIstemcisi(), alan_id, { baslik: "Okuma hatırlatması", govde: metin, veri: { ekran: "bugun" } });
+  // Dokununca Bugün, bu grubun programı seçili açılır
+  const sb = servisIstemcisi();
+  const { data: kp } = await sb.from("kullanici_program").select("id")
+    .eq("kullanici_id", alan_id).eq("grup_id", grup_id).eq("durum", "aktif").maybeSingle();
+  await kullaniciyaPush(sb, alan_id, { baslik: "Okuma hatırlatması", govde: metin, veri: { ekran: "bugun", kp: kp?.id } });
   return yanit(s);
 });

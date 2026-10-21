@@ -12,7 +12,7 @@ import { profil } from '@/src/api/giris';
 import { AdFormu } from '@/src/components/GirisFormu';
 import { Bildirim } from '@/src/components/ui';
 import { t } from '@/src/i18n';
-import { pushKaydet } from '@/src/lib/bildirim';
+import { pushKaydet, useBildirimYonlendir } from '@/src/lib/bildirim';
 import { gorunurAlaniIzle } from '@/src/lib/gorunurAlan';
 import { swKaydet } from '@/src/lib/webPush';
 import { supabase } from '@/src/lib/supabase';
@@ -67,6 +67,7 @@ export default function KokLayout() {
 // Tüm katmanlar (alt sayfa, toast) bu kökün içinde position: absolute; position: fixed kullanılmaz
 function Kok({ oturumVar }: { oturumVar: boolean }) {
   const r = useRenkler();
+  useBildirimYonlendir(oturumVar);
   useEffect(() => {
     if (Platform.OS !== 'web') return;
     // Android durum çubuğu, iOS açılış/geçiş rengi ve odak çerçevesi temayla birlikte değişir

@@ -1,4 +1,4 @@
-import { davetLinkleri, pushGonder, waLink } from "./ortak.ts";
+import { davetLinkleri, gunlukMesaj, pushGonder, waLink } from "./ortak.ts";
 
 function esit(a: unknown, b: unknown) {
   if (JSON.stringify(a) !== JSON.stringify(b)) throw new Error(`beklenen ${JSON.stringify(b)}, gelen ${JSON.stringify(a)}`);
@@ -31,4 +31,18 @@ Deno.test("push: DeviceNotRegistered token'ları döner", async () => {
 Deno.test("push: token yoksa istek atılmaz", async () => {
   const s = await pushGonder([], { baslik: "x", govde: "y" }, (() => { throw new Error("çağrılmamalı"); }) as typeof fetch);
   esit(s, { gonderilen: 0, gecersiz: [] });
+});
+
+Deno.test("günlük hatırlatma: tek program", () => {
+  esit(gunlukMesaj([{ kp: "a", ad: "Lahikalar", gun_no: 2 }]), {
+    baslik: "Günlük okuma",
+    govde: "Lahikalar: bugünkü 2. gün okumanızı henüz işaretlemediniz.",
+    veri: { ekran: "bugun", kp: "a" },
+  });
+});
+
+Deno.test("günlük hatırlatma: iki program tek bildirim", () => {
+  const m = gunlukMesaj([{ kp: "a", ad: "Lahikalar", gun_no: 2 }, { kp: "b", ad: "Perşembe dersi", gun_no: 5 }]);
+  esit(m.govde, "Bugünkü okumanızı henüz işaretlemediniz: Lahikalar (2. gün), Perşembe dersi (5. gün).");
+  esit(m.veri, { ekran: "bugun", kp: "a" });
 });
