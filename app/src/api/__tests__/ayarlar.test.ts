@@ -1,4 +1,4 @@
-import { duraklat, hesabiSil, profilGuncelle } from '@/src/api/ayarlar';
+import { duraklat, hesabiSil, profilGuncelle, silmeyiIptal } from '@/src/api/ayarlar';
 import { arg, cagrilar, modul, sifirla } from '@/src/test/sahteSupabase';
 
 jest.mock('@/src/lib/supabase', () => require('@/src/test/sahteSupabase').modul);
@@ -19,4 +19,10 @@ test('hesap silme talebi işaretlenir ve oturum kapanır', async () => {
   await hesabiSil();
   expect(Object.keys(arg('update')![0] as object)).toEqual(['silinme_tarihi']);
   expect(modul.supabase.auth.signOut).toHaveBeenCalled();
+});
+
+test('silmekten vazgeçince silinme tarihi temizlenir', async () => {
+  await silmeyiIptal();
+  expect(arg('update')).toEqual([{ silinme_tarihi: null }]);
+  expect(arg('eq')).toEqual(['id', 'ben']);
 });

@@ -170,7 +170,10 @@
   "ayarlar.yeniProgram": "Yeni program",
   "ayarlar.cikis": "Çıkış yap",
   "ayarlar.hesapSil": "Hesabımı sil",
-  "ayarlar.hesapSilOnay": "Hesabınız silinecek; 30 gün sonra kişisel verileriniz kalıcı olarak anonimleştirilir.",
+  "ayarlar.hesapSilOnay": "Hesabınız silinecek. 30 gün içinde tekrar giriş yaparak vazgeçebilirsiniz; bu süre dolunca kişisel verileriniz ve notlarınız kalıcı olarak silinir.",
+  "silme.baslik": "Hesabınız silinmek üzere",
+  "silme.aciklama": "{tarih} tarihinde kişisel verileriniz ve notlarınız kalıcı olarak silinecek. Vazgeçerseniz hesabınızı olduğu gibi kullanmaya devam edersiniz.",
+  "silme.vazgec": "Silmekten vazgeç",
 
   "program.baslik": "Kendi programınız",
   "program.ad": "Program adı",

@@ -23,6 +23,12 @@ export async function devamEt(kpId: string) {
   veri(await supabase.rpc('devam_et', { kp_id: kpId }));
 }
 
+// 30 gün içinde giriş yapan kullanıcı vazgeçebilir (0013_hesap_silme.sql)
+export async function silmeyiIptal() {
+  const id = await benimId();
+  veri(await supabase.from('kullanici').update({ silinme_tarihi: null }).eq('id', id));
+}
+
 // 30 gün sonra hesaplari_anonimlestir() (cron) kişisel verileri siler
 export async function hesabiSil() {
   const id = await benimId();

@@ -8,10 +8,12 @@ import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-c
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { cikis, silmeyiIptal } from '@/src/api/ayarlar';
 import { profil } from '@/src/api/giris';
 import { AdFormu } from '@/src/components/GirisFormu';
-import { Bildirim } from '@/src/components/ui';
+import { Bildirim, Buton, Yazi } from '@/src/components/ui';
 import { t } from '@/src/i18n';
+import { uzunTarih } from '@/src/lib/bicim';
 import { pushKaydet, useBildirimYonlendir } from '@/src/lib/bildirim';
 import { gorunurAlaniIzle } from '@/src/lib/gorunurAlan';
 import { swKaydet } from '@/src/lib/webPush';
@@ -87,6 +89,19 @@ function Gezinme({ oturumVar }: { oturumVar: boolean }) {
   const sema = useColorScheme();
   const r = useRenkler();
   const p = useQuery({ queryKey: ['profil'], queryFn: profil, enabled: oturumVar });
+
+  // Silme isteğinden sonraki 30 gün içinde giriş yapan kullanıcı vazgeçebilir
+  if (oturumVar && p.data?.silinme_tarihi) {
+    const tarih = new Date(Date.parse(p.data.silinme_tarihi) + 30 * 864e5).toISOString();
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', gap: 16, padding: 16, backgroundColor: r.zemin }}>
+        <Yazi tur="buyuk">{t('silme.baslik')}</Yazi>
+        <Yazi>{t('silme.aciklama', { tarih: uzunTarih(tarih) })}</Yazi>
+        <Buton baslik={t('silme.vazgec')} onPress={async () => { await silmeyiIptal(); await p.refetch(); }} />
+        <Buton tur="hayalet" baslik={t('ayarlar.cikis')} onPress={cikis} />
+      </View>
+    );
+  }
 
   // Yeni kullanıcı (trigger ad'ı boş açar) önce adını girer
   if (oturumVar && p.data && !p.data.ad) {
