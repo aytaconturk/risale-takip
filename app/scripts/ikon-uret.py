@@ -15,13 +15,19 @@ def isaret(d, cx, cy, s, renk):
 def ikon(boyut, oran, ad):
     im = Image.new('RGB', (boyut, boyut), VURGU)
     isaret(ImageDraw.Draw(im), boyut / 2, boyut / 2, boyut * oran, 'white')
-    im.save(f'public/{ad}')
+    im.save(ad if '/' in ad else f'public/{ad}')
 
 
 ikon(180, 0.62, 'ikon-180.png')
 ikon(192, 0.62, 'ikon-192.png')
 ikon(512, 0.62, 'ikon-512.png')
 ikon(512, 0.5, 'ikon-maskable-512.png')  # güvenli alan: ortadaki %80
+ikon(1024, 0.5, 'assets/images/icon.png')  # iOS uygulama ikonu: saydamlık yok, köşeleri iOS yuvarlar
+
+# Yerel açılış ekranı işareti (zemin rengi app.json'da, açık/koyu)
+im = Image.new('RGBA', (1024, 1024), (0, 0, 0, 0))
+isaret(ImageDraw.Draw(im), 512, 512, 640, VURGU)
+im.save('assets/images/splash-icon.png')
 
 # iPhone dikey ekranlar (CSS genişlik, yükseklik, piksel oranı) — web-hazirla.mjs adlardan media sorgusu üretir
 for w, h, r in [(375, 667, 2), (414, 896, 2), (375, 812, 3), (414, 896, 3), (390, 844, 3), (428, 926, 3), (393, 852, 3), (430, 932, 3), (402, 874, 3), (440, 956, 3)]:
